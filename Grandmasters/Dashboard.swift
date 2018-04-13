@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import MarqueeLabel
+import GTProgressBar
 
 class Dashboard: UIViewController {
 
+    @IBOutlet var imgFlag: UIImageView!
+    @IBOutlet var lblName: MarqueeLabel!
+    @IBOutlet var TotalHealthBar: GTProgressBar!
+    @IBOutlet var lblTotalHealth: UILabel!
+    @IBOutlet var lblXP: UILabel!
+    @IBOutlet var lblPosition: UILabel!
+    @IBOutlet var imgOnlineStatus: UIImageView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadData()
+        
         // Do any additional setup after loading the view.
     }
     @IBAction func btnTrainingRoom(_ sender: UIButton) {
@@ -49,6 +63,14 @@ class Dashboard: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let profile = storyboard.instantiateViewController(withIdentifier: "profile") as! Profile
         self.present(profile, animated: true, completion: nil)
+    }
+    
+    func loadData()
+    {
+        imgFlag.image = UIImage(named: UserData["Mem_Country"].stringValue)
+        lblName.text = UserData["Mem_fightername"].stringValue
+        TotalHealthBar.animateTo(progress: CGFloat(UserData["Mem_TotalHealthPoint"].floatValue))
+        
     }
     
     override func didReceiveMemoryWarning() {

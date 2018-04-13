@@ -919,7 +919,7 @@
                                 <rect key="frame" x="9" y="14" width="20" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hiren" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndg-Lq-cPu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hiren" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndg-Lq-cPu" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                 <rect key="frame" x="35" y="14" width="35" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SkranjiBold" family="SkranjiBold" pointSize="10"/>
@@ -962,6 +962,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="IfK-0u-x9k"/>
                     </view>
+                    <connections>
+                        <outlet property="TotalHealthBar" destination="5qP-Wb-7s9" id="Ev2-Yz-vlY"/>
+                        <outlet property="imgFlag" destination="ZdA-TE-9ky" id="04J-EO-X6x"/>
+                        <outlet property="imgOnlineStatus" destination="Ufi-oh-2Fy" id="uga-Ef-N0U"/>
+                        <outlet property="lblName" destination="Ndg-Lq-cPu" id="q6P-bI-9z4"/>
+                        <outlet property="lblPosition" destination="e2l-J2-Gpu" id="DBR-um-LTg"/>
+                        <outlet property="lblTotalHealth" destination="RWZ-Fn-kPd" id="8rw-nS-k7z"/>
+                        <outlet property="lblXP" destination="ARY-4z-vBW" id="nb4-kQ-adW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xag-zS-HhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

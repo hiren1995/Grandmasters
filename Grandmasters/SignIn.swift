@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+
+var UserData = JSON()
+
 
 class SignIn: UIViewController,UITextFieldDelegate {
 
@@ -56,9 +61,39 @@ class SignIn: UIViewController,UITextFieldDelegate {
             }
             else
             {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
-                self.present(dashboard, animated: true, completion: nil)
+                
+                
+                let urlString = UserLoginAPI + "email=" +  "\(String(describing: txtEmail.text!))" + "&pwd=" + "\(String(describing: txtPassword.text!))" + "&GcmId=" + "123456"
+                
+                print(urlString)
+                
+                
+                
+                Alamofire.request(urlString).responseJSON { response in
+                    
+                    print(JSON(response.result.value))
+                    
+                    let temp = JSON(response.result.value)
+                    
+                    if(temp["message"] == "Success")
+                    {
+                        
+                            userDefault.set(temp["response_message"]["userid"].intValue, forKey: UserId)
+                            UserData = temp["response_message"]["userdata"]
+                        
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
+                            self.present(dashboard, animated: true, completion: nil)
+                        
+                        
+                    }
+                    else
+                    {
+                        
+                        self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                    }
+                }
+               
             }
         }
     }

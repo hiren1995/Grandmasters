@@ -115,7 +115,7 @@ class SignUp: UIViewController,CountryPickerDelegate{
                 else
                 {
                     
-                    let urlString = User_Register + "email=" +  "\(String(describing: txtEmail.text!))" + "&pwd=" + "\(String(describing: txtPassword.text!))" + "&fightername=" + "\(String(describing: txtFightersName.text!))" + "&country=" + "\(CountryCode)"
+                    let urlString = User_RegisterAPI + "email=" +  "\(String(describing: txtEmail.text!))" + "&pwd=" + "\(String(describing: txtPassword.text!))" + "&fightername=" + "\(String(describing: txtFightersName.text!))" + "&country=" + "\(CountryCode)"
                     
                     print(urlString)
                     

@@ -8,8 +8,15 @@
 
 import Foundation
 
-let Base_URL = "https://thegrandmastersapp.com/admin/api/index.php"
-let User_Register = "\(Base_URL)/member/register?"
-let UserLogin = "\(Base_URL)/member/memberlogin"
-let getMemberList = "\(Base_URL)/member/memberlist"
+var userDefault = UserDefaults.standard
+
+var UserId = "UserId"
+
+// API calls url list
+
+
+var Base_URL = "https://thegrandmastersapp.com/admin/api/index.php"
+var User_RegisterAPI = "\(Base_URL)/member/register?"
+var UserLoginAPI = "\(Base_URL)/member/memberlogin?"
+var getMemberListAPI = "\(Base_URL)/member/memberlist?"
 
