@@ -79,7 +79,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
                     {
                         
                             userDefault.set(temp["response_message"]["userid"].intValue, forKey: UserId)
-                            UserData = temp["response_message"]["userdata"]
+                            UserData = temp["response_message"]["userdata"][0]
                         
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard

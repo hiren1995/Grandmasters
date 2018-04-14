@@ -730,7 +730,7 @@
                                     <action selector="btnProfile:" destination="7CH-So-tOv" eventType="touchUpInside" id="bGq-QP-hoT"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="10P-ts-77t">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="10P-ts-77t">
                                 <rect key="frame" x="9" y="112" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -915,7 +915,7 @@
                                 <color key="textColor" red="0.074509803921568626" green="0.68627450980392157" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IN" translatesAutoresizingMaskIntoConstraints="NO" id="ZdA-TE-9ky">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IM" translatesAutoresizingMaskIntoConstraints="NO" id="ZdA-TE-9ky">
                                 <rect key="frame" x="9" y="14" width="20" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -966,6 +966,11 @@
                         <outlet property="TotalHealthBar" destination="5qP-Wb-7s9" id="Ev2-Yz-vlY"/>
                         <outlet property="imgFlag" destination="ZdA-TE-9ky" id="04J-EO-X6x"/>
                         <outlet property="imgOnlineStatus" destination="Ufi-oh-2Fy" id="uga-Ef-N0U"/>
+                        <outlet property="imgProfilePic" destination="10P-ts-77t" id="Zi2-D1-j8c"/>
+                        <outlet property="lblAccuracy" destination="K55-bo-sza" id="8OA-cb-PwC"/>
+                        <outlet property="lblAgility" destination="qkX-uD-hte" id="8jT-Jz-Lgg"/>
+                        <outlet property="lblLevel" destination="23f-60-mx9" id="r9f-kr-jff"/>
+                        <outlet property="lblMight" destination="Rur-Gc-ofG" id="Vv3-4g-rX3"/>
                         <outlet property="lblName" destination="Ndg-Lq-cPu" id="q6P-bI-9z4"/>
                         <outlet property="lblPosition" destination="e2l-J2-Gpu" id="DBR-um-LTg"/>
                         <outlet property="lblTotalHealth" destination="RWZ-Fn-kPd" id="8rw-nS-k7z"/>
@@ -4157,6 +4162,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="IM" width="40" height="30"/>
         <image name="IN" width="40" height="30"/>
         <image name="aa" width="53" height="53"/>
         <image name="blue_heart" width="45" height="45"/>

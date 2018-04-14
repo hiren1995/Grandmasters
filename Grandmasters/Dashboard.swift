@@ -9,6 +9,7 @@
 import UIKit
 import MarqueeLabel
 import GTProgressBar
+import Kingfisher
 
 class Dashboard: UIViewController {
 
@@ -19,6 +20,11 @@ class Dashboard: UIViewController {
     @IBOutlet var lblXP: UILabel!
     @IBOutlet var lblPosition: UILabel!
     @IBOutlet var imgOnlineStatus: UIImageView!
+    @IBOutlet var lblAccuracy: UILabel!
+    @IBOutlet var lblMight: UILabel!
+    @IBOutlet var lblAgility: UILabel!
+    @IBOutlet var lblLevel: UILabel!
+    @IBOutlet var imgProfilePic: UIImageView!
     
     
     
@@ -67,9 +73,34 @@ class Dashboard: UIViewController {
     
     func loadData()
     {
+        print(UserData)
+        
         imgFlag.image = UIImage(named: UserData["Mem_Country"].stringValue)
         lblName.text = UserData["Mem_fightername"].stringValue
+       
         TotalHealthBar.animateTo(progress: CGFloat(UserData["Mem_TotalHealthPoint"].floatValue))
+        lblTotalHealth.text  = "\(UserData["Mem_TotalHealthPoint"].stringValue)/100"
+        lblLevel.text = UserData["Mem_Level"].stringValue
+        
+        if(UserData["Mem_OnlineStatus"].intValue == 1)
+        {
+            imgOnlineStatus.image = UIImage(named: "ic_online")
+        }
+        else
+        {
+            imgOnlineStatus.image = UIImage(named: "ic_offline")
+        }
+        
+        lblAccuracy.text = UserData["Mem_AccuracyCount"].stringValue
+        lblMight.text = UserData["Mem_MightCount"].stringValue
+        lblAgility.text = UserData["Mem_AgilityCount"].stringValue
+        
+        KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(UserData["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+            
+            
+            self.imgProfilePic.image = image
+        })
+        
         
     }
     

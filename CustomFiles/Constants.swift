@@ -16,7 +16,9 @@ var UserId = "UserId"
 
 
 var Base_URL = "https://thegrandmastersapp.com/admin/api/index.php"
+var Image_URL = "https://www.thegrandmastersapp.com/admin/api/images/"
 var User_RegisterAPI = "\(Base_URL)/member/register?"
 var UserLoginAPI = "\(Base_URL)/member/memberlogin?"
-var getMemberListAPI = "\(Base_URL)/member/memberlist?"
+var getMemberListAPI = "\(Base_URL)/member/memberlist"
+
 
