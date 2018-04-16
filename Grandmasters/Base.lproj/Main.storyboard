@@ -289,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-772" y="130"/>
+            <point key="canvasLocation" x="-840" y="129"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="e1C-tS-x6Y">
@@ -979,7 +979,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xag-zS-HhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474.51274362818594" y="128.80000000000001"/>
+            <point key="canvasLocation" x="535" y="129"/>
         </scene>
         <!--Leader Board-->
         <scene sceneID="8Fq-EH-OZP">
@@ -1222,7 +1222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxX-EI-PWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097.9010494752624" y="848.79999999999995"/>
+            <point key="canvasLocation" x="1098" y="840"/>
         </scene>
         <!--Profile-->
         <scene sceneID="eaI-xI-dgq">
@@ -1966,6 +1966,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pms-hA-4mB">
+                                <rect key="frame" x="52" y="37" width="562" height="303"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ctZ-E0-FW3"/>
@@ -1976,7 +1981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZJ-MT-eRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1098" y="2290"/>
+            <point key="canvasLocation" x="1097.9010494752624" y="2288.8000000000002"/>
         </scene>
         <!--Arena-->
         <scene sceneID="nxO-rF-aWs">
@@ -2713,7 +2718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fo-AC-xZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097.9010494752624" y="128.80000000000001"/>
+            <point key="canvasLocation" x="1227" y="129"/>
         </scene>
         <!--Result-->
         <scene sceneID="1H5-ev-2B6">
@@ -3531,7 +3536,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Tb-tI-jCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1723" y="129"/>
+            <point key="canvasLocation" x="1922" y="129"/>
         </scene>
         <!--Training Room-->
         <scene sceneID="g3l-fy-Ayy">

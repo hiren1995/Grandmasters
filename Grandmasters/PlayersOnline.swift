@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
+var selectedOpponent = JSON()
 
 class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -69,8 +70,14 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         
         let cell = PlayersOnlineCollectionView.cellForItem(at: indexPath) as! PlayersOnlineCollectionCell
         
-        cell.layer.backgroundColor = UIColor.lightGray.cgColor
+        cell.layer.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 0.5).cgColor
+        
+        selectedOpponent = tempDict[indexPath.row]
+        
+        print(selectedOpponent)
+        
     }
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = PlayersOnlineCollectionView.cellForItem(at: indexPath) as! PlayersOnlineCollectionCell
         
