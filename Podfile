@@ -8,7 +8,7 @@ target 'Grandmasters' do
   # Pods for Grandmasters
   
   pod 'CountryPickerSwift', '1.7'
-  pod "GTProgressBar"
+  pod 'GTProgressBar'
   pod 'MarqueeLabel/Swift'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'

@@ -33,7 +33,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
         addDoneButtonOnKeyboard()
         ViewForgetPassword.isHidden = true
         
-        lblForgetPasswd.setTopRoundCorners(radius : 10)
+        //lblForgetPasswd.setTopRoundCorners(radius : 10)
         
         // Do any additional setup after loading the view.
     }

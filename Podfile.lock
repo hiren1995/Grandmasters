@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.1)
+  - Alamofire (4.7.2)
   - CountryPickerSwift (1.7)
   - CropViewController (2.3.6)
   - GTProgressBar (0.2.3)
@@ -27,7 +27,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   CountryPickerSwift: 316dbfea0b01560320526ef06c15536326549f77
   CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
   GTProgressBar: ecfa9f2dfaca1b9b35811925f5bd53516ee591ae
@@ -35,6 +35,6 @@ SPEC CHECKSUMS:
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 7c330bc0f79d886b47a87c71714ec9a279410cb8
+PODFILE CHECKSUM: a9620084994573c373318e0824f88bf21fd86e8c
 
 COCOAPODS: 1.5.0

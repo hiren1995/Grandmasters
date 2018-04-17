@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import MarqueeLabel
+import GTProgressBar
 
 var selectedOpponent = JSON()
 
@@ -20,6 +22,24 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     var tempDict = JSON()
     
     @IBOutlet weak var PlayersOnlineCollectionView: UICollectionView!
+    @IBOutlet var ViewChallenge: UIView!
+    @IBOutlet var lblPlayersCount: UILabel!
+    
+    @IBOutlet var lblRankFighter: UILabel!
+    @IBOutlet var imgOnlineStatusFighter: UIImageView!
+    @IBOutlet var imgFlagFighter: UIImageView!
+    @IBOutlet var lblNameFighter: MarqueeLabel!
+    @IBOutlet var TotalHealthBarFighter: GTProgressBar!
+    @IBOutlet var lblTotalHealthFighter: UILabel!
+    
+    @IBOutlet var lblTotalHealthOpponent: UILabel!
+    @IBOutlet var lblViewTitle: UILabel!
+    @IBOutlet var imgFlagOpponent: UIImageView!
+    @IBOutlet var TotalHealthBarOpponent: GTProgressBar!
+    @IBOutlet var ProfileImgOpponent: UIImageView!
+    @IBOutlet var lblRankOpponent: UILabel!
+    @IBOutlet var imgOnlineStatusOpponent: UIImageView!
+    @IBOutlet var lblNameOpponent: MarqueeLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +49,8 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         PlayersOnlineCollectionView.allowsMultipleSelection = false
         
         loadData()
+        
+        ViewChallenge.isHidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -91,6 +113,27 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     
     func loadData()
     {
+        print("Inside load Data")
+        
+        print(UserData)
+       
+        
+        imgFlagFighter.image = UIImage(named: UserData["Mem_Country"].stringValue)
+        lblNameFighter.text = UserData["Mem_fightername"].stringValue
+        
+        TotalHealthBarFighter.animateTo(progress: CGFloat(UserData["Mem_TotalHealthPoint"].floatValue))
+        lblTotalHealthFighter.text  = "\(UserData["Mem_TotalHealthPoint"].stringValue)/100"
+        lblRankFighter.text = UserData["Mem_Level"].stringValue
+        
+        if(UserData["Mem_OnlineStatus"].intValue == 1)
+        {
+            imgOnlineStatusFighter.image = UIImage(named: "ic_online")
+        }
+        else
+        {
+            imgOnlineStatusFighter.image = UIImage(named: "ic_offline")
+        }
+ 
         
         Alamofire.request(getMemberListAPI).responseJSON { response in
             
@@ -104,6 +147,95 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             }
             
         }
+    }
+    
+    @IBAction func btnFight(_ sender: UIButton) {
+        
+        if(selectedOpponent["Mem_Id"].stringValue != "")
+        {
+            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
+            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
+            
+            lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
+            
+            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
+            
+            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
+            }
+            else
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
+            }
+            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+                
+                
+                self.ProfileImgOpponent.image = image
+            })
+        }
+        else
+        {
+            selectedOpponent = tempDict[0]
+            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
+            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
+             lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
+            
+            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
+            
+            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
+            }
+            else
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
+            }
+            
+            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+                
+                
+                self.ProfileImgOpponent.image = image
+            })
+        }
+        
+        ViewChallenge.isHidden = false
+        
+    }
+    
+    @IBAction func btnFightRequest(_ sender: Any) {
+        
+        let urlString = sendFightRequestAPI + "user=" +  "\(userDefault.value(forKey: UserId)!)" + "&opponent=" + "\(selectedOpponent["Mem_Id"].intValue)"
+        
+        print(urlString)
+        
+        
+        
+        Alamofire.request(urlString).responseJSON { response in
+            
+            print(JSON(response.result.value))
+            
+            let temp = JSON(response.result.value)
+            
+            if(temp["message"] == "message")
+            {
+               self.ViewChallenge.isHidden = true
+                
+                self.showAlert(title: "Request Sent", message: "Request sent Successfully")
+                
+            }
+            else
+            {
+                
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        }
+        
+    }
+    @IBAction func btnCancelChallenge(_ sender: UIButton) {
+        
+        ViewChallenge.isHidden = true
+        
     }
     
     
