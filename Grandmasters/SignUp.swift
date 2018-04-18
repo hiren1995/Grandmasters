@@ -10,7 +10,7 @@ import UIKit
 import CountryPicker
 import Alamofire
 import SwiftyJSON
-
+import MBProgressHUD
 
 var isAgree:Bool = false
 var Country = String()
@@ -114,6 +114,8 @@ class SignUp: UIViewController,CountryPickerDelegate{
                 }
                 else
                 {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
+                    
                     
                     let urlString = User_RegisterAPI + "email=" +  "\(String(describing: txtEmail.text!))" + "&pwd=" + "\(String(describing: txtPassword.text!))" + "&fightername=" + "\(String(describing: txtFightersName.text!))" + "&country=" + "\(CountryCode)"
                     
@@ -128,6 +130,8 @@ class SignUp: UIViewController,CountryPickerDelegate{
                         
                         if(temp["message"] == "Success")
                         {
+                             MBProgressHUD.hide(for: self.view, animated: true)
+                            
                             if(temp["response"]["isExist"] == "Yes")
                             {
                                 self.showAlert(title: "Stop", message: "User Already Exit")
@@ -143,7 +147,7 @@ class SignUp: UIViewController,CountryPickerDelegate{
                         }
                         else
                         {
-                           
+                            MBProgressHUD.hide(for: self.view, animated: true)
                             self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
                         }
                     }

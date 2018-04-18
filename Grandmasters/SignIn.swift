@@ -9,11 +9,19 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MBProgressHUD
+
+import FacebookCore
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 var UserData = JSON()
 
 
 class SignIn: UIViewController,UITextFieldDelegate {
+    
+    let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
 
     
     @IBOutlet weak var txtEmail: UITextField!
@@ -33,7 +41,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
         addDoneButtonOnKeyboard()
         ViewForgetPassword.isHidden = true
         
-        //lblForgetPasswd.setTopRoundCorners(radius : 10)
+        lblForgetPasswd.setTopRoundCorners(radius : 10)
         
         // Do any additional setup after loading the view.
     }
@@ -61,39 +69,10 @@ class SignIn: UIViewController,UITextFieldDelegate {
             }
             else
             {
+                let params:Parameters = ["email" : txtEmail.text! ,"pwd" : txtPassword.text! , "GcmId" : "123456"]
                 
+                loginCall(LoginParams: params)
                 
-                let urlString = UserLoginAPI + "email=" +  "\(String(describing: txtEmail.text!))" + "&pwd=" + "\(String(describing: txtPassword.text!))" + "&GcmId=" + "123456"
-                
-                print(urlString)
-                
-                
-                
-                Alamofire.request(urlString).responseJSON { response in
-                    
-                    print(JSON(response.result.value))
-                    
-                    let temp = JSON(response.result.value)
-                    
-                    if(temp["message"] == "Success")
-                    {
-                        
-                            userDefault.set(temp["response_message"]["userid"].intValue, forKey: UserId)
-                            UserData = temp["response_message"]["userdata"][0]
-                        
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
-                            self.present(dashboard, animated: true, completion: nil)
-                        
-                        
-                    }
-                    else
-                    {
-                        
-                        self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
-                    }
-                }
-               
             }
         }
     }
@@ -174,10 +153,94 @@ class SignIn: UIViewController,UITextFieldDelegate {
         
     }
     
+    @IBAction func BtnFBLogin(_ sender: UIButton) {
+        
+        fbLoginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { (result, error) -> Void in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                
+                print(result)
+                
+                // if user cancel the login
+                if (result?.isCancelled)!{
+                    
+                    return
+                }
+                if(fbloginresult.grantedPermissions.contains("email")){
+                    if((FBSDKAccessToken.current()) != nil){
+                        
+                        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                            if (error == nil){
+                                //everything works print the user data
+                                //print(FBSDKAccessToken.current().tokenString)
+                                
+                                let FBinfo = JSON(result)
+                                print(FBinfo)
+                                
+                                let params:Parameters = ["email" : FBinfo["email"].stringValue , "deviceid" : "123456" , "GcmId" : "123456" , "fbid" : FBinfo["id"].intValue , "name" : FBinfo["name"].stringValue , "fname" : FBinfo["first_name"].stringValue , "lname" : FBinfo["last_name"].stringValue , "propic" : FBinfo["picture"]["data"]["url"].stringValue]
+                                
+                                self.loginCall(LoginParams: params)
+                               
+                            }
+                        })
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
     @IBAction func btnCancel(_ sender: UIButton) {
         
         ViewForgetPassword.isHidden = true
     }
+    
+    func loginCall(LoginParams : Parameters)
+    {
+       
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        Alamofire.request(UserLoginAPI, method: .get, parameters: LoginParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                print(JSON(response.result.value))
+                
+                let temp = JSON(response.result.value)
+                
+                if(temp["message"] == "Success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    userDefault.set(temp["response_message"]["userid"].intValue, forKey: UserId)
+                    UserData = temp["response_message"]["userdata"][0]
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
+                    self.present(dashboard, animated: true, completion: nil)
+                    
+                }
+                else
+                {
+                     MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                 MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+        
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

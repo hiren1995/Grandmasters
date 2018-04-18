@@ -1,40 +1,86 @@
 PODS:
   - Alamofire (4.7.2)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - CountryPickerSwift (1.7)
   - CropViewController (2.3.6)
+  - FacebookCore (0.3.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.27)
+  - FacebookLogin (0.3.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKLoginKit (~> 4.27)
+  - FacebookShare (0.3.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKShareKit (~> 4.27)
+  - FBSDKCoreKit (4.32.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.32.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.32.0):
+    - FBSDKCoreKit (~> 4.32.0)
   - GTProgressBar (0.2.3)
   - Kingfisher (4.7.0)
   - MarqueeLabel/Swift (3.1.4)
+  - MBProgressHUD (1.1.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - CountryPickerSwift (= 1.7)
   - CropViewController
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - GTProgressBar
   - Kingfisher (~> 4.0)
   - MarqueeLabel/Swift
+  - MBProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - Bolts
     - CountryPickerSwift
     - CropViewController
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - GTProgressBar
     - Kingfisher
     - MarqueeLabel
+    - MBProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CountryPickerSwift: 316dbfea0b01560320526ef06c15536326549f77
   CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
+  FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
+  FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
+  FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
+  FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
+  FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
+  FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
   GTProgressBar: ecfa9f2dfaca1b9b35811925f5bd53516ee591ae
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a9620084994573c373318e0824f88bf21fd86e8c
+PODFILE CHECKSUM: d47e860c1e32c0293924941e637a56ff5f664ef5
 
 COCOAPODS: 1.5.0

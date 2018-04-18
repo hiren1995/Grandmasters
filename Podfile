@@ -14,6 +14,11 @@ target 'Grandmasters' do
   pod 'SwiftyJSON'
   pod 'Kingfisher', '~> 4.0'
   pod 'CropViewController'
+  pod 'MBProgressHUD'
+  
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
   
 
   target 'GrandmastersTests' do

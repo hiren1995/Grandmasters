@@ -12,6 +12,7 @@ import SwiftyJSON
 import Kingfisher
 import MarqueeLabel
 import GTProgressBar
+import MBProgressHUD
 
 var selectedOpponent = JSON()
 
@@ -113,6 +114,9 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     
     func loadData()
     {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         print("Inside load Data")
         
         print(UserData)
@@ -144,6 +148,8 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             if(self.tempDict.count != 0)
             {
                 self.PlayersOnlineCollectionView.reloadData()
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
             
         }

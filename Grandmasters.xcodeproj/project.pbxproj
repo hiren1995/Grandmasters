@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BE819020871688004EA970 /* Grandmasters.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BE818F20871688004EA970 /* Grandmasters.m */; };
 		2D167228205B9731000297DE /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D167227205B9731000297DE /* Dashboard.swift */; };
 		2D1EA3F1206648E800B789B8 /* Arena.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EA3F0206648E800B789B8 /* Arena.swift */; };
 		2D2DAAD120624F7B004CC2E3 /* LeaderBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2DAAD020624F7B004CC2E3 /* LeaderBoard.swift */; };
@@ -58,6 +59,8 @@
 /* Begin PBXFileReference section */
 		09FEEDBDB6E8D3320DBBFBD6 /* Pods-GrandmastersUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrandmastersUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrandmastersUITests/Pods-GrandmastersUITests.release.xcconfig"; sourceTree = "<group>"; };
 		135026EACA91965342B56224 /* Pods_Grandmasters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grandmasters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18BE818E20871687004EA970 /* Grandmasters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grandmasters-Bridging-Header.h"; sourceTree = "<group>"; };
+		18BE818F20871688004EA970 /* Grandmasters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Grandmasters.m; sourceTree = "<group>"; };
 		2D167227205B9731000297DE /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		2D1EA3F0206648E800B789B8 /* Arena.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arena.swift; sourceTree = "<group>"; };
 		2D2DAAD020624F7B004CC2E3 /* LeaderBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoard.swift; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				2DDE2660205BCD7800AF0BCB /* Flags.xcassets */,
 				2D61932B2057DA7900D9EE49 /* LaunchScreen.storyboard */,
 				2D61932E2057DA7900D9EE49 /* Info.plist */,
+				18BE818F20871688004EA970 /* Grandmasters.m */,
+				18BE818E20871687004EA970 /* Grandmasters-Bridging-Header.h */,
 			);
 			path = Grandmasters;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				TargetAttributes = {
 					2D61931E2057DA7900D9EE49 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 					};
 					2D6193322057DA7900D9EE49 = {
@@ -422,20 +428,36 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Grandmasters/Pods-Grandmasters-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/CountryPickerSwift/CountryPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTProgressBar/GTProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountryPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -473,6 +495,7 @@
 				2D6193582057E92D00D9EE49 /* CustomFunctions.swift in Sources */,
 				2D6193512057E70300D9EE49 /* SignIn.swift in Sources */,
 				2D6193232057DA7900D9EE49 /* AppDelegate.swift in Sources */,
+				18BE819020871688004EA970 /* Grandmasters.m in Sources */,
 				2D86C620206E3B140043961B /* TrainingRoom.swift in Sources */,
 				2D77E3EB206A0E130020ADE8 /* Result.swift in Sources */,
 				2DB5621A205D1D21008E9BA8 /* EditProfile.swift in Sources */,
@@ -650,6 +673,7 @@
 			baseConfigurationReference = B586A46102DD7E771474F1FB /* Pods-Grandmasters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3NWJFVU6RP;
@@ -659,6 +683,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e66b2875-05ca-41a5-80b7-2faca5445a66";
 				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development1;
+				SWIFT_OBJC_BRIDGING_HEADER = "Grandmasters/Grandmasters-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,6 +695,7 @@
 			baseConfigurationReference = F623347DFEA8DA1A0FC10DF9 /* Pods-Grandmasters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3NWJFVU6RP;
@@ -678,6 +705,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e66b2875-05ca-41a5-80b7-2faca5445a66";
 				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development1;
+				SWIFT_OBJC_BRIDGING_HEADER = "Grandmasters/Grandmasters-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
