@@ -20,6 +20,9 @@ target 'Grandmasters' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
   
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  
 
   target 'GrandmastersTests' do
     inherit! :search_paths

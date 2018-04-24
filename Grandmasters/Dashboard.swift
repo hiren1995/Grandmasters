@@ -31,10 +31,15 @@ class Dashboard: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadData()
+        //loadData()
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadData()
+    }
+    
     @IBAction func btnTrainingRoom(_ sender: UIButton) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -73,7 +78,9 @@ class Dashboard: UIViewController {
     
     func loadData()
     {
+      
         print(UserData)
+
         
         imgFlag.image = UIImage(named: UserData["Mem_Country"].stringValue)
         lblName.text = UserData["Mem_fightername"].stringValue
@@ -100,8 +107,7 @@ class Dashboard: UIViewController {
             
             self.imgProfilePic.image = image
         })
-        
-        
+ 
     }
     
     override func didReceiveMemoryWarning() {

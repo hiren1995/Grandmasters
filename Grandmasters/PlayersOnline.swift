@@ -118,10 +118,8 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         print("Inside load Data")
-        
         print(UserData)
        
-        
         imgFlagFighter.image = UIImage(named: UserData["Mem_Country"].stringValue)
         lblNameFighter.text = UserData["Mem_fightername"].stringValue
         
@@ -137,7 +135,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         {
             imgOnlineStatusFighter.image = UIImage(named: "ic_offline")
         }
- 
+        
         
         Alamofire.request(getMemberListAPI).responseJSON { response in
             
@@ -223,7 +221,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             
             let temp = JSON(response.result.value)
             
-            if(temp["message"] == "message")
+            if(temp["message"] == "success")
             {
                self.ViewChallenge.isHidden = true
                 

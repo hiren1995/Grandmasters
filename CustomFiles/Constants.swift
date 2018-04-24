@@ -11,6 +11,10 @@ import Foundation
 var userDefault = UserDefaults.standard
 
 var UserId = "UserId"
+var DeviceToken = "DeviceToken"
+var isLogin = "isLogin"
+var loginParam = "LoginParam"
+
 
 // API calls url list
 

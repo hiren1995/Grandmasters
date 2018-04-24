@@ -18,7 +18,6 @@ import FBSDKLoginKit
 
 var UserData = JSON()
 
-
 class SignIn: UIViewController,UITextFieldDelegate {
     
     let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
@@ -69,7 +68,8 @@ class SignIn: UIViewController,UITextFieldDelegate {
             }
             else
             {
-                let params:Parameters = ["email" : txtEmail.text! ,"pwd" : txtPassword.text! , "GcmId" : "123456"]
+                let params:Parameters = ["email" : txtEmail.text! ,"pwd" : txtPassword.text! , "GcmId" : userDefault.value(forKey: DeviceToken)!]
+
                 
                 loginCall(LoginParams: params)
                 
@@ -177,7 +177,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
                                 let FBinfo = JSON(result)
                                 print(FBinfo)
                                 
-                                let params:Parameters = ["email" : FBinfo["email"].stringValue , "deviceid" : "123456" , "GcmId" : "123456" , "fbid" : FBinfo["id"].intValue , "name" : FBinfo["name"].stringValue , "fname" : FBinfo["first_name"].stringValue , "lname" : FBinfo["last_name"].stringValue , "propic" : FBinfo["picture"]["data"]["url"].stringValue]
+                                let params:Parameters = ["email" : FBinfo["email"].stringValue , "deviceid" : "123456" , "GcmId" : userDefault.value(forKey: DeviceToken)! , "fbid" : FBinfo["id"].intValue , "name" : FBinfo["name"].stringValue , "fname" : FBinfo["first_name"].stringValue , "lname" : FBinfo["last_name"].stringValue , "propic" : FBinfo["picture"]["data"]["url"].stringValue]
                                 
                                 self.loginCall(LoginParams: params)
                                
@@ -200,6 +200,8 @@ class SignIn: UIViewController,UITextFieldDelegate {
     func loginCall(LoginParams : Parameters)
     {
        
+        userDefault.set(LoginParams, forKey: loginParam)
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         Alamofire.request(UserLoginAPI, method: .get, parameters: LoginParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
@@ -214,8 +216,12 @@ class SignIn: UIViewController,UITextFieldDelegate {
                     
                     MBProgressHUD.hide(for: self.view, animated: true)
                     
+                    userDefault.set(true, forKey: isLogin)
+                    
                     userDefault.set(temp["response_message"]["userid"].intValue, forKey: UserId)
+                    
                     UserData = temp["response_message"]["userdata"][0]
+                    
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let dashboard = storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard

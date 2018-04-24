@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180FA0AE2089E61500B0F7CF /* FightStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FA0AD2089E61500B0F7CF /* FightStats.swift */; };
+		181BBC49208DAB9A009E55CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 181BBC48208DAB99009E55CE /* GoogleService-Info.plist */; };
 		18BE819020871688004EA970 /* Grandmasters.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BE818F20871688004EA970 /* Grandmasters.m */; };
 		2D167228205B9731000297DE /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D167227205B9731000297DE /* Dashboard.swift */; };
 		2D1EA3F1206648E800B789B8 /* Arena.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EA3F0206648E800B789B8 /* Arena.swift */; };
@@ -59,6 +61,9 @@
 /* Begin PBXFileReference section */
 		09FEEDBDB6E8D3320DBBFBD6 /* Pods-GrandmastersUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrandmastersUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrandmastersUITests/Pods-GrandmastersUITests.release.xcconfig"; sourceTree = "<group>"; };
 		135026EACA91965342B56224 /* Pods_Grandmasters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grandmasters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		180FA0AD2089E61500B0F7CF /* FightStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightStats.swift; sourceTree = "<group>"; };
+		181BBC48208DAB99009E55CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		181BBC4A208DB51E009E55CE /* Grandmasters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grandmasters.entitlements; sourceTree = "<group>"; };
 		18BE818E20871687004EA970 /* Grandmasters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grandmasters-Bridging-Header.h"; sourceTree = "<group>"; };
 		18BE818F20871688004EA970 /* Grandmasters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Grandmasters.m; sourceTree = "<group>"; };
 		2D167227205B9731000297DE /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		2D6193212057DA7900D9EE49 /* Grandmasters */ = {
 			isa = PBXGroup;
 			children = (
+				181BBC4A208DB51E009E55CE /* Grandmasters.entitlements */,
 				2D6193222057DA7900D9EE49 /* AppDelegate.swift */,
 				2D6193502057E70300D9EE49 /* SignIn.swift */,
 				2D3D06882058F21F007A51D0 /* SignUp.swift */,
@@ -183,11 +189,13 @@
 				2D1EA3F0206648E800B789B8 /* Arena.swift */,
 				2D77E3EA206A0E130020ADE8 /* Result.swift */,
 				2D86C61F206E3B140043961B /* TrainingRoom.swift */,
+				180FA0AD2089E61500B0F7CF /* FightStats.swift */,
 				2D6193262057DA7900D9EE49 /* Main.storyboard */,
 				2D6193292057DA7900D9EE49 /* Assets.xcassets */,
 				2DDE2660205BCD7800AF0BCB /* Flags.xcassets */,
 				2D61932B2057DA7900D9EE49 /* LaunchScreen.storyboard */,
 				2D61932E2057DA7900D9EE49 /* Info.plist */,
+				181BBC48208DAB99009E55CE /* GoogleService-Info.plist */,
 				18BE818F20871688004EA970 /* Grandmasters.m */,
 				18BE818E20871687004EA970 /* Grandmasters-Bridging-Header.h */,
 			);
@@ -317,6 +325,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D6193322057DA7900D9EE49 = {
 						CreatedOnToolsVersion = 9.2;
@@ -362,6 +375,7 @@
 				2D61932A2057DA7900D9EE49 /* Assets.xcassets in Resources */,
 				2D61935F2057E94400D9EE49 /* ds-digi-webfont.ttf in Resources */,
 				2D61935E2057E94400D9EE49 /* SkranjiBold.ttf in Resources */,
+				181BBC49208DAB9A009E55CE /* GoogleService-Info.plist in Resources */,
 				2D6193282057DA7900D9EE49 /* Main.storyboard in Resources */,
 				2D6193612057E94400D9EE49 /* healthpoint-sound.mp3 in Resources */,
 			);
@@ -438,10 +452,13 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTProgressBar/GTProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -456,10 +473,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -492,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1EA3F1206648E800B789B8 /* Arena.swift in Sources */,
+				180FA0AE2089E61500B0F7CF /* FightStats.swift in Sources */,
 				2D6193582057E92D00D9EE49 /* CustomFunctions.swift in Sources */,
 				2D6193512057E70300D9EE49 /* SignIn.swift in Sources */,
 				2D6193232057DA7900D9EE49 /* AppDelegate.swift in Sources */,
@@ -674,6 +695,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Grandmasters/Grandmasters.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3NWJFVU6RP;
@@ -681,8 +703,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Grandmasters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e66b2875-05ca-41a5-80b7-2faca5445a66";
-				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development1;
+				PROVISIONING_PROFILE = "fa3f7025-7eb7-4806-a2f2-b45018f4d84f";
+				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development2;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grandmasters/Grandmasters-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -696,6 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Grandmasters/Grandmasters.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3NWJFVU6RP;
@@ -703,8 +726,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.Grandmasters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e66b2875-05ca-41a5-80b7-2faca5445a66";
-				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development1;
+				PROVISIONING_PROFILE = "fa3f7025-7eb7-4806-a2f2-b45018f4d84f";
+				PROVISIONING_PROFILE_SPECIFIER = Grandmasters_Development2;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grandmasters/Grandmasters-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -39,7 +39,7 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return dict.count
     
-        return self.tempDict.count
+        return self.tempDict["userdata"].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,10 +69,10 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
         */
         
         cell.lblPlace.text = String(indexPath.row + 1)
-        cell.imgFlag.image = UIImage(named: self.tempDict[indexPath.row]["Mem_Country"].stringValue)
-        cell.lblName.text =  self.tempDict[indexPath.row]["Mem_fightername"].stringValue
+        cell.imgFlag.image = UIImage(named: self.tempDict["userdata"][indexPath.row]["Mem_Country"].stringValue)
+        cell.lblName.text =  self.tempDict["userdata"][indexPath.row]["Mem_fightername"].stringValue
         
-        if(self.tempDict[indexPath.row]["Mem_OnlineStatus"].intValue == 1)
+        if(self.tempDict["userdata"][indexPath.row]["Mem_OnlineStatus"].intValue == 1)
         {
             cell.imgOnline.image = UIImage(named: "ic_online")
         }
@@ -81,11 +81,11 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
             cell.imgOnline.image = UIImage(named: "ic_offline")
         }
         
-        cell.lblRank.text = self.tempDict[indexPath.row]["Mem_Level"].stringValue
-        cell.lblXP.text = self.tempDict[indexPath.row]["Mem_XP"].stringValue
-        cell.lblLevel.text = self.tempDict[indexPath.row]["Mem_Level"].stringValue
+        cell.lblRank.text = self.tempDict["userdata"][indexPath.row]["Mem_Level"].stringValue
+        cell.lblXP.text = self.tempDict["userdata"][indexPath.row]["Mem_XP"].stringValue
+        cell.lblLevel.text = self.tempDict["userdata"][indexPath.row]["Mem_Level"].stringValue
        
-        let code = self.tempDict[indexPath.row]["Mem_Country"].stringValue
+        let code = self.tempDict["userdata"][indexPath.row]["Mem_Country"].stringValue
         picker.setCountry(code)
         
         cell.lblCountry.text = Country
@@ -104,7 +104,7 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         
-        Alamofire.request(getMemberListAPI).responseJSON { response in
+        Alamofire.request(getLeaderBoardAPI).responseJSON { response in
             
             print(JSON(response.result.value))
             
@@ -131,7 +131,7 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
         
         
         /*
-        Alamofire.request(getMemberListAPI, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+        Alamofire.request(getLeaderBoardAPI, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
             if(response.result.value != nil)
             {
                 print(JSON(response.result.value))
@@ -166,6 +166,15 @@ class LeaderBoard: UIViewController,UITableViewDataSource,UITableViewDelegate,Co
         //pick up anythink
         Country = name
     }
+    
+    
+    @IBAction func btnStats(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
+        self.present(fightStats, animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
