@@ -8,11 +8,12 @@
 
 import UIKit
 
-class FightStats: UIViewController {
+class FightStats: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 
