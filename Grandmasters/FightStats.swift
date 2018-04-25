@@ -8,15 +8,31 @@
 
 import UIKit
 
-class FightStats: UIViewController{
+class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
+    
 
+    @IBOutlet var FightStatsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         
         // Do any additional setup after loading the view.
     }
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = FightStatsCollectionView.dequeueReusableCell(withReuseIdentifier: "fightStatsCollectionViewCell", for: indexPath) as! FightStatsCollectionViewCell
+        
+        return cell
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

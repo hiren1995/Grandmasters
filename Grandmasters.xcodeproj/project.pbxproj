@@ -10,6 +10,7 @@
 		180FA0AE2089E61500B0F7CF /* FightStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FA0AD2089E61500B0F7CF /* FightStats.swift */; };
 		181BBC49208DAB9A009E55CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 181BBC48208DAB99009E55CE /* GoogleService-Info.plist */; };
 		18BE819020871688004EA970 /* Grandmasters.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BE818F20871688004EA970 /* Grandmasters.m */; };
+		18E70FB220905F7100F65CDD /* FightStatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E70FB120905F7100F65CDD /* FightStatsCollectionViewCell.swift */; };
 		2D167228205B9731000297DE /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D167227205B9731000297DE /* Dashboard.swift */; };
 		2D1EA3F1206648E800B789B8 /* Arena.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EA3F0206648E800B789B8 /* Arena.swift */; };
 		2D2DAAD120624F7B004CC2E3 /* LeaderBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2DAAD020624F7B004CC2E3 /* LeaderBoard.swift */; };
@@ -66,6 +67,7 @@
 		181BBC4A208DB51E009E55CE /* Grandmasters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grandmasters.entitlements; sourceTree = "<group>"; };
 		18BE818E20871687004EA970 /* Grandmasters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grandmasters-Bridging-Header.h"; sourceTree = "<group>"; };
 		18BE818F20871688004EA970 /* Grandmasters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Grandmasters.m; sourceTree = "<group>"; };
+		18E70FB120905F7100F65CDD /* FightStatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightStatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D167227205B9731000297DE /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		2D1EA3F0206648E800B789B8 /* Arena.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arena.swift; sourceTree = "<group>"; };
 		2D2DAAD020624F7B004CC2E3 /* LeaderBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoard.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				2D77E3EA206A0E130020ADE8 /* Result.swift */,
 				2D86C61F206E3B140043961B /* TrainingRoom.swift */,
 				180FA0AD2089E61500B0F7CF /* FightStats.swift */,
+				18E70FB120905F7100F65CDD /* FightStatsCollectionViewCell.swift */,
 				2D6193262057DA7900D9EE49 /* Main.storyboard */,
 				2D6193292057DA7900D9EE49 /* Assets.xcassets */,
 				2DDE2660205BCD7800AF0BCB /* Flags.xcassets */,
@@ -514,6 +517,7 @@
 				2D1EA3F1206648E800B789B8 /* Arena.swift in Sources */,
 				180FA0AE2089E61500B0F7CF /* FightStats.swift in Sources */,
 				2D6193582057E92D00D9EE49 /* CustomFunctions.swift in Sources */,
+				18E70FB220905F7100F65CDD /* FightStatsCollectionViewCell.swift in Sources */,
 				2D6193512057E70300D9EE49 /* SignIn.swift in Sources */,
 				2D6193232057DA7900D9EE49 /* AppDelegate.swift in Sources */,
 				18BE819020871688004EA970 /* Grandmasters.m in Sources */,
