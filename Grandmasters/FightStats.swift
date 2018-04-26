@@ -13,8 +13,18 @@ import SwiftyJSON
 
 class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
     
-
+    var tempDict = JSON()
     @IBOutlet var FightStatsCollectionView: UICollectionView!
+    
+    var PlayerBlock1 = String()
+    var PlayerBlock2 = String()
+    var PlayerAttack = String()
+    
+    var OpponentBlock1 = String()
+    var OpponentBlock2 = String()
+    var OpponentAttack = String()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,12 +35,34 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 10
+        //return self.tempDict["roundData"].count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = FightStatsCollectionView.dequeueReusableCell(withReuseIdentifier: "fightStatsCollectionViewCell", for: indexPath) as! FightStatsCollectionViewCell
+        
+        
+        
+        let PlayerMoveString = self.tempDict["roundData"][indexPath.row + 1]["FR_userMove"].stringValue
+        let PlayerMoveArray = PlayerMoveString.components(separatedBy: "-")
+        print(PlayerMoveArray)
+        
+        let OpponentMoveString = self.tempDict["roundData"][indexPath.row + 1]["FR_oppoMove"].stringValue
+        let OpponentMoveArray = OpponentMoveString.components(separatedBy: "-")
+        print(OpponentMoveArray)
+        
+        if(self.tempDict["userid"].intValue == userDefault.value(forKey: UserId) as! Int)
+        {
+            
+           
+        }
+        else
+        {
+            
+        }
         
         return cell
     }
@@ -47,14 +79,14 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
             {
                 print(JSON(response.result.value))
                 
-                let temp = JSON(response.result.value)
+                self.tempDict = JSON(response.result.value)
                 
-                if(temp["message"] == "Success")
+                if(self.tempDict["message"].stringValue == "success")
                 {
                     
                     MBProgressHUD.hide(for: self.view, animated: true)
                     
-                    
+                    self.FightStatsCollectionView.reloadData()
                     
                 }
                 else

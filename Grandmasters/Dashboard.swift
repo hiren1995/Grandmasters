@@ -113,8 +113,8 @@ class Dashboard: UIViewController {
     @IBAction func btGamenStats(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let profile = storyboard.instantiateViewController(withIdentifier: "profile") as! Fi
-        self.present(profile, animated: true, completion: nil)
+        let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
+        self.present(fightStats, animated: true, completion: nil)
     }
     
     
