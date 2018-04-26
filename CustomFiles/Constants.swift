@@ -26,5 +26,6 @@ var UserLoginAPI = "\(Base_URL)/member/memberlogin?"
 var getMemberListAPI = "\(Base_URL)/member/memberlist"
 var sendFightRequestAPI = "\(Base_URL)/member/requestFight?"
 var getLeaderBoardAPI = "\(Base_URL)/member/leaderboard"
+var getGameStatsAPI = "\(Base_URL)/member/getStatistic"
 
 

@@ -110,6 +110,14 @@ class Dashboard: UIViewController {
  
     }
     
+    @IBAction func btGamenStats(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profile = storyboard.instantiateViewController(withIdentifier: "profile") as! Fi
+        self.present(profile, animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

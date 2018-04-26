@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import MBProgressHUD
+import SwiftyJSON
 
 class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
     
@@ -15,6 +18,7 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData()
         
         
         // Do any additional setup after loading the view.
@@ -31,7 +35,43 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
         return cell
     }
     
-    
+    func loadData()
+    {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let statsParams:Parameters = ["userid": "\(userDefault.value(forKey: UserId)!)"]
+        
+        Alamofire.request(getGameStatsAPI, method: .get, parameters: statsParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                print(JSON(response.result.value))
+                
+                let temp = JSON(response.result.value)
+                
+                if(temp["message"] == "Success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    
+                    
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
