@@ -36,32 +36,104 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
-        //return self.tempDict["roundData"].count + 1
+        //return 10
+        return self.tempDict["roundData"].count - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = FightStatsCollectionView.dequeueReusableCell(withReuseIdentifier: "fightStatsCollectionViewCell", for: indexPath) as! FightStatsCollectionViewCell
         
+        cell.txtRound.text = "Round " + self.tempDict["roundData"][indexPath.row + 1]["FR_RoundNo"].stringValue
         
+        print("Round \(self.tempDict["roundData"][indexPath.row + 1]["FR_RoundNo"].stringValue)")
         
         let PlayerMoveString = self.tempDict["roundData"][indexPath.row + 1]["FR_userMove"].stringValue
         let PlayerMoveArray = PlayerMoveString.components(separatedBy: "-")
+        print("Players Move")
         print(PlayerMoveArray)
+        PlayerBlock1 = PlayerMoveArray[0]
+        PlayerBlock2 = PlayerMoveArray[1]
+        PlayerAttack = PlayerMoveArray[2]
         
         let OpponentMoveString = self.tempDict["roundData"][indexPath.row + 1]["FR_oppoMove"].stringValue
         let OpponentMoveArray = OpponentMoveString.components(separatedBy: "-")
+        print("Opponent Move")
         print(OpponentMoveArray)
+        OpponentBlock1 = OpponentMoveArray[0]
+        OpponentBlock2 = OpponentMoveArray[1]
+        OpponentAttack = OpponentMoveArray[2]
+        
         
         if(self.tempDict["userid"].intValue == userDefault.value(forKey: UserId) as! Int)
         {
-            
+            cell.lblFighterName.text = self.tempDict["user1Data"][0]["Mem_fightername"].stringValue
            
+            cell.lblOpponentName.text = self.tempDict["user2Data"][0]["Mem_fightername"].stringValue
+            
+            //here if our user id is same as user1data userid then Player is player and opponent is opponent
+            
+            //
+            
+            if(PlayerBlock1 == "A")
+            {
+                cell.imgPlayerHeadBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock1 == "B")
+            {
+                cell.imgPlayerChestBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock1 == "C")
+            {
+                cell.imgPlayerThighBlocked.image = UIImage(named: "icon_block")
+            }
+            else
+            {
+                cell.imgPlayerLegBlocked.image = UIImage(named: "icon_block")
+            }
+            
+            if(PlayerBlock2 == "A")
+            {
+                cell.imgPlayerHeadBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock2 == "B")
+            {
+                cell.imgPlayerChestBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock2 == "C")
+            {
+                cell.imgPlayerThighBlocked.image = UIImage(named: "icon_block")
+            }
+            else
+            {
+                cell.imgPlayerLegBlocked.image = UIImage(named: "icon_block")
+            }
+            
+            if(PlayerAttack == "A")
+            {
+                cell.imgOpponentHeadAttacked.image = UIImage(named: "icon_green")
+            }
+            else if(PlayerAttack == "B")
+            {
+                cell.imgOpponentChestAttacked.image = UIImage(named: "icon_green")
+            }
+            else if(PlayerAttack == "C")
+            {
+                cell.imgOpponentThighAttacked.image = UIImage(named: "icon_green")
+            }
+            else
+            {
+                cell.imgOpponentLegAttacked.image = UIImage(named: "icon_green")
+                
+            }
         }
         else
         {
+            cell.lblFighterName.text = self.tempDict["user2Data"][0]["Mem_fightername"].stringValue
             
+            cell.lblOpponentName.text = self.tempDict["user1Data"][0]["Mem_fightername"].stringValue
+            
+            //here if our userid is not same as user1data userid then opponent is player and player is opponent
         }
         
         return cell

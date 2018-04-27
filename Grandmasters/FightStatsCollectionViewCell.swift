@@ -10,6 +10,7 @@ import UIKit
 
 class FightStatsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var txtRound: UILabel!
     @IBOutlet var lblFighterName: UILabel!
     @IBOutlet var lblOpponentName: UILabel!
     
