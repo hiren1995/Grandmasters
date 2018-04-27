@@ -360,6 +360,11 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
         })
     }
     
+    @IBAction func btnClose(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

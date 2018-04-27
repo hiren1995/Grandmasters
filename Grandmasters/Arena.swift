@@ -348,6 +348,13 @@ class Arena: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func btnStats(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
+        self.present(fightStats, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
