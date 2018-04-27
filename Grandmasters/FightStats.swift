@@ -136,6 +136,7 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
             
             // set images for opponent
             
+            // Conditions for OpponentBlock1
             
             if(OpponentBlock1 == "A")
             {
@@ -154,7 +155,7 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
                 cell.imgOpponentLegBlocked.image = UIImage(named: "icon_block")
             }
             
-            // Conditions for playerBlock2
+            // Conditions for OpponentBlock2
             
             if(OpponentBlock2 == "A")
             {
@@ -177,19 +178,19 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
             
             if(OpponentAttack == "A")
             {
-                cell.imgPlayerHeadAttacked.image = UIImage(named: "icon_green")
+                cell.imgPlayerHeadAttacked.image = UIImage(named: "icon_blue")
             }
             else if(PlayerAttack == "B")
             {
-                cell.imgPlayer.image = UIImage(named: "icon_green")
+                cell.imgPlayerChestAttacked.image = UIImage(named: "icon_blue")
             }
             else if(PlayerAttack == "C")
             {
-                cell.imgOpponentThighAttacked.image = UIImage(named: "icon_green")
+                cell.imgPlayerThighAttacked.image = UIImage(named: "icon_blue")
             }
             else
             {
-                cell.imgOpponentLegAttacked.image = UIImage(named: "icon_green")
+                cell.imgPlayerLegAttacked.image = UIImage(named: "icon_blue")
                 
             }
         }
@@ -254,6 +255,66 @@ class FightStats: UIViewController,UICollectionViewDelegate,UICollectionViewData
             else
             {
                 cell.imgOpponentLegAttacked.image = UIImage(named: "icon_green")
+                
+            }
+            
+            // set images for opponent
+            
+            // Conditions for OpponentBlock1
+            
+            if(PlayerBlock1 == "A")
+            {
+                cell.imgOpponentHeadBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock1 == "B")
+            {
+                cell.imgOpponentChestBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock1 == "C")
+            {
+                cell.imgOpponentThighBlocked.image = UIImage(named: "icon_block")
+            }
+            else
+            {
+                cell.imgOpponentLegBlocked.image = UIImage(named: "icon_block")
+            }
+            
+            // Conditions for OpponentBlock2
+            
+            if(PlayerBlock2 == "A")
+            {
+                cell.imgOpponentHeadBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock2 == "B")
+            {
+                cell.imgOpponentChestBlocked.image = UIImage(named: "icon_block")
+            }
+            else if(PlayerBlock2 == "C")
+            {
+                cell.imgOpponentThighBlocked.image = UIImage(named: "icon_block")
+            }
+            else
+            {
+                cell.imgOpponentLegBlocked.image = UIImage(named: "icon_block")
+            }
+            
+            // Conditions for playerAttack
+            
+            if(PlayerAttack == "A")
+            {
+                cell.imgPlayerHeadAttacked.image = UIImage(named: "icon_blue")
+            }
+            else if(PlayerAttack == "B")
+            {
+                cell.imgPlayerChestAttacked.image = UIImage(named: "icon_blue")
+            }
+            else if(PlayerAttack == "C")
+            {
+                cell.imgPlayerThighAttacked.image = UIImage(named: "icon_blue")
+            }
+            else
+            {
+                cell.imgPlayerLegAttacked.image = UIImage(named: "icon_blue")
                 
             }
         }
