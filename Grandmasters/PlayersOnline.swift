@@ -322,7 +322,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         Alamofire.request(getFollowListAPI, method: .get, parameters: followlistParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
             if(response.result.value != nil)
             {
-                /*
+                
                 
                 print(JSON(response.result.value))
                 
@@ -337,7 +337,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                     
                     for i in 0...temp["followlist"].count-1
                     {
-                        
+                        /*
                         if(temp["followlist"][i]["Fol_Following"].intValue == self.tempDict[i]["Mem_Id"].intValue)
                         {
                             let x = self.tempDict[i]
@@ -345,11 +345,11 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                             self.tempDict.merge(with: x)
                             
                         }
-                        
+                        */
                     }
                     
                     self.PlayersOnlineCollectionView.reloadData()
-                    */
+                    
                 }
                 else
                 {
