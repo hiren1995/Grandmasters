@@ -16,6 +16,7 @@ import MBProgressHUD
 
 var selectedOpponent = JSON()
 
+
 class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     let dict = [["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"]]
@@ -242,11 +243,140 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         
     }
     
+    @IBAction func btnInfo(_ sender: Any) {
+        
+        lblViewTitle.text = "Info"
+        
+        if(selectedOpponent["Mem_Id"].stringValue != "")
+        {
+            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
+            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
+            
+            lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
+            
+            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
+            
+            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
+            }
+            else
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
+            }
+            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+                
+                
+                self.ProfileImgOpponent.image = image
+            })
+            
+            ViewChallenge.isHidden = false
+        }
+        else
+        {
+            self.showAlert(title: "Alert", message: "Please Select an Opponent to get the Information")
+        }
+        
+        
+    }
+    
+    @IBAction func btnRandom(_ sender: UIButton) {
+    
+        if(tempDict.count != 0)
+        {
+            let random = randomNumber(n: tempDict.count)
+            
+            selectedOpponent = tempDict[random]
+            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
+            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
+            lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
+            
+            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
+            
+            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
+            }
+            else
+            {
+                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
+            }
+            
+            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+                
+                
+                self.ProfileImgOpponent.image = image
+            })
+            
+            ViewChallenge.isHidden = false
+        }
+        
+    }
+    
+    @IBAction func btnFollowing(_ sender: UIButton) {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let followlistParams:Parameters = ["uid": "\(userDefault.value(forKey: UserId)!)"]
+        
+        Alamofire.request(getFollowListAPI, method: .get, parameters: followlistParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                /*
+                
+                print(JSON(response.result.value))
+                
+                let temp = JSON(response.result.value)
+                
+                
+                if(temp["message"].stringValue == "success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    
+                    for i in 0...temp["followlist"].count-1
+                    {
+                        
+                        if(temp["followlist"][i]["Fol_Following"].intValue == self.tempDict[i]["Mem_Id"].intValue)
+                        {
+                            let x = self.tempDict[i]
+                            self.tempDict = []
+                            self.tempDict.merge(with: x)
+                            
+                        }
+                        
+                    }
+                    
+                    self.PlayersOnlineCollectionView.reloadData()
+                    */
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+    }
+    
     @IBAction func btnStats(_ sender: UIButton) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
         self.present(fightStats, animated: true, completion: nil)
+    }
+    
+    func randomNumber(n : Int) -> Int {
+        
+         return Int(arc4random_uniform(UInt32(n)))
     }
     
     override func didReceiveMemoryWarning() {
