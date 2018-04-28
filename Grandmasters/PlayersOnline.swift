@@ -15,7 +15,7 @@ import GTProgressBar
 import MBProgressHUD
 
 var selectedOpponent = JSON()
-
+var followList = JSON()
 
 class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -79,13 +79,15 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         cell.imgFlag.image = UIImage(named: tempDict[indexPath.row]["Mem_Country"].stringValue)
         cell.lblRank.text = tempDict[indexPath.row]["Mem_Level"].stringValue
         
-        
-        KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(tempDict[indexPath.row]["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
-            
-            
-            cell.imgProfilePic.image = image
-            
-        })
+        if(tempDict[indexPath.row]["Mem_Propic"].stringValue != "")
+        {
+            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(tempDict[indexPath.row]["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
+                
+                
+                cell.imgProfilePic.image = image
+                
+            })
+        }
         
         return cell
     }
@@ -156,47 +158,28 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     
     @IBAction func btnFight(_ sender: UIButton) {
         
-        if(selectedOpponent["Mem_Id"].stringValue != "")
+        if(selectedOpponent["Mem_Id"].stringValue == "")
         {
-            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
-            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
-            
-            lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
-            
-            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
-            
-            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
-            {
-                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
-            }
-            else
-            {
-                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
-            }
-            KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
-                
-                
-                self.ProfileImgOpponent.image = image
-            })
+            selectedOpponent = tempDict[0]
+        }
+       
+        lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
+        imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
+        lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
+        
+        TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
+        
+        if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
+        {
+            imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
         }
         else
         {
-            selectedOpponent = tempDict[0]
-            lblNameOpponent.text = selectedOpponent["Mem_fightername"].stringValue
-            imgFlagOpponent.image = UIImage(named: selectedOpponent["Mem_Country"].stringValue)
-             lblRankOpponent.text = selectedOpponent["Mem_Level"].stringValue
-            
-            TotalHealthBarOpponent.animateTo(progress: CGFloat(selectedOpponent["Mem_TotalHealthPoint"].floatValue))
-            
-            if(selectedOpponent["Mem_OnlineStatus"].intValue == 1)
-            {
-                imgOnlineStatusOpponent.image = UIImage(named: "ic_online")
-            }
-            else
-            {
-                imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
-            }
-            
+            imgOnlineStatusOpponent.image = UIImage(named: "ic_offline")
+        }
+        
+        if(selectedOpponent["Mem_Propic"].stringValue != "")
+        {
             KingfisherManager.shared.downloader.downloadImage(with: NSURL(string: "\(Image_URL)/\(selectedOpponent["Mem_Propic"].stringValue)")! as URL, retrieveImageTask: RetrieveImageTask.empty, options: [], progressBlock: nil, completionHandler: { (image,error, imageURL, imageData) in
                 
                 
@@ -329,25 +312,35 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                 let temp = JSON(response.result.value)
                 
                 
+                
                 if(temp["message"].stringValue == "success")
                 {
                     
                     MBProgressHUD.hide(for: self.view, animated: true)
                     
+                    var tempFollow = JSON()
                     
+                    tempFollow = self.tempDict
+                    
+                    self.tempDict = []
+        
                     for i in 0...temp["followlist"].count-1
                     {
-                        /*
-                        if(temp["followlist"][i]["Fol_Following"].intValue == self.tempDict[i]["Mem_Id"].intValue)
+                        for j in 0...tempFollow.count-1
                         {
-                            let x = self.tempDict[i]
-                            self.tempDict = []
-                            self.tempDict.merge(with: x)
-                            
+                            if(temp["followlist"][i]["Fol_Following"].intValue == tempFollow[j]["Mem_Id"].intValue)
+                            {
+                                let x = tempFollow[j]
+                                print(x)
+                                
+                                self.tempDict.arrayObject?.append(x)
+                                
+                            }
                         }
-                        */
+                        
+                        
                     }
-                    
+                    print(self.tempDict)
                     self.PlayersOnlineCollectionView.reloadData()
                     
                 }
