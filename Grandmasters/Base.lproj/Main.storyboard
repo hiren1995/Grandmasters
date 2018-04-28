@@ -4979,6 +4979,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="C8w-t1-lli"/>
                     </view>
+                    <connections>
+                        <outlet property="PlayerHealthStatusBar" destination="6BB-l2-cyR" id="8bs-Jd-iZN"/>
+                        <outlet property="imgPlayerFlag" destination="R1F-Ue-Acb" id="yev-Yx-OsG"/>
+                        <outlet property="imgPlayerOnlineStatus" destination="DjV-fY-WPR" id="YmY-te-cCZ"/>
+                        <outlet property="lblAccuracy" destination="C42-Mj-mQF" id="Pbv-te-Xam"/>
+                        <outlet property="lblAccuracyBox" destination="pN2-Ef-CFW" id="ipr-F6-djJ"/>
+                        <outlet property="lblAgility" destination="mfg-vu-SD0" id="a4Q-Gl-WYP"/>
+                        <outlet property="lblAgilityBox" destination="z4F-vP-Zt2" id="2wO-9Z-SAU"/>
+                        <outlet property="lblHealth" destination="4SY-Wd-Adg" id="7Ti-z9-hXM"/>
+                        <outlet property="lblHealthStatus" destination="AjX-Qs-fzi" id="noY-lS-CLC"/>
+                        <outlet property="lblMight" destination="g7p-zv-BEC" id="nfj-PN-ITm"/>
+                        <outlet property="lblMightBox" destination="n7f-QY-cVw" id="Ahj-5H-gvC"/>
+                        <outlet property="lblPlayerLevel" destination="bLc-Xo-MOW" id="oAD-4f-Yfb"/>
+                        <outlet property="lblPlayerName" destination="IrB-Ac-zYE" id="4Pg-Zb-bRV"/>
+                        <outlet property="lblPower" destination="HSk-WC-gOg" id="D19-g3-dVw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kGh-cg-miC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

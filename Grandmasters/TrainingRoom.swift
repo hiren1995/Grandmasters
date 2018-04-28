@@ -7,9 +7,26 @@
 //
 
 import UIKit
+import SwiftyJSON
+import GTProgressBar
 
 class TrainingRoom: UIViewController {
 
+    @IBOutlet var imgPlayerFlag: UIImageView!
+    @IBOutlet var lblPlayerName: UILabel!
+    @IBOutlet var imgPlayerOnlineStatus: UIImageView!
+    @IBOutlet var lblPlayerLevel: UILabel!
+    @IBOutlet var PlayerHealthStatusBar: GTProgressBar!
+    @IBOutlet var lblHealthStatus: UILabel!
+    @IBOutlet var lblPower: UILabel!
+    @IBOutlet var lblHealth: UILabel!
+    @IBOutlet var lblMight: UILabel!
+    @IBOutlet var lblAccuracy: UILabel!
+    @IBOutlet var lblAgility: UILabel!
+    @IBOutlet var lblMightBox: UILabel!
+    @IBOutlet var lblAccuracyBox: UILabel!
+    @IBOutlet var lblAgilityBox: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
