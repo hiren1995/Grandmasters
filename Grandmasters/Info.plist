@@ -24,6 +24,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to use your Camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to use your Photo Libraray</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ds-digi-webfont.ttf</string>
@@ -48,34 +52,25 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    
-    
-    
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb948660268633908</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>948660268633908</string>
-    <key>FacebookDisplayName</key>
-    <string>GrandmastersTest</string>
-    
-    
-    
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-share-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
-    
-    
-    
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb948660268633908</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>948660268633908</string>
+	<key>FacebookDisplayName</key>
+	<string>GrandmastersTest</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>

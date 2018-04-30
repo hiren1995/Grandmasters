@@ -28,4 +28,6 @@ var sendFightRequestAPI = "\(Base_URL)/member/requestFight?"
 var getLeaderBoardAPI = "\(Base_URL)/member/leaderboard"
 var getGameStatsAPI = "\(Base_URL)/member/getStatistic"
 var getFollowListAPI = "\(Base_URL)/member/followlist"
+var updateProfilePicAPI = "\(Base_URL)/member/updateprofilepic"
+var followOpponentAPI = "\(Base_URL)/member/follow"
 

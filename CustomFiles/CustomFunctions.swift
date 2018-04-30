@@ -102,6 +102,21 @@ func isValidEmail(testStr:String) -> Bool {
     return emailTest.evaluate(with: testStr)
 }
 
+func convertImageToBase64(image: UIImage) -> String {
+    
+    //var imageData = UIImagePNGRepresentation(image)
+    
+    var imageData = UIImageJPEGRepresentation(image, 0.05)
+    
+    let base64String = imageData?.base64EncodedString(options: .lineLength64Characters)
+
+    //let base64String = imageData?.base64EncodedString(options: .init(rawValue: 0))
+    
+    return base64String!
+    
+}
+
+
 func rotate3(imageView: UIImageView, aCircleTime: Double) { //CAKeyframeAnimation
     
     let animation = CAKeyframeAnimation(keyPath: "transform.rotation.z")

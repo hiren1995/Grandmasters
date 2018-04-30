@@ -782,6 +782,17 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnProfilePic:" destination="7CH-So-tOv" eventType="touchUpInside" id="dZA-D8-DDN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2O-PB-ivl">
+                                <rect key="frame" x="119" y="123" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="icon_edit"/>
+                                <connections>
+                                    <action selector="btnProfilePic2:" destination="7CH-So-tOv" eventType="touchUpInside" id="WbX-12-1zd"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Blg-CI-DG0">
                                 <rect key="frame" x="23" y="221" width="30" height="30"/>
@@ -900,11 +911,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2O-PB-ivl">
-                                <rect key="frame" x="119" y="123" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="icon_edit"/>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qP-Wb-7s9" customClass="GTProgressBar" customModule="GTProgressBar">
                                 <rect key="frame" x="23" y="92" width="88" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -929,8 +935,8 @@
                                 <rect key="frame" x="9" y="92" width="12" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100/100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Fn-kPd">
-                                <rect key="frame" x="114" y="92" width="35" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" misplaced="YES" text="100/100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-Fn-kPd">
+                                <rect key="frame" x="114" y="92" width="45" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SkranjiBold" family="SkranjiBold" pointSize="9"/>
                                 <color key="textColor" red="0.074509803921568626" green="0.68627450980392157" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
@@ -1003,12 +1009,13 @@
                         <outlet property="lblName" destination="Ndg-Lq-cPu" id="q6P-bI-9z4"/>
                         <outlet property="lblPosition" destination="e2l-J2-Gpu" id="DBR-um-LTg"/>
                         <outlet property="lblTotalHealth" destination="RWZ-Fn-kPd" id="8rw-nS-k7z"/>
+                        <outlet property="lblWinDrawLose" destination="F9T-uN-2zo" id="h9a-6P-xB3"/>
                         <outlet property="lblXP" destination="ARY-4z-vBW" id="nb4-kQ-adW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xag-zS-HhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="416" y="129"/>
+            <point key="canvasLocation" x="421" y="129"/>
         </scene>
         <!--Leader Board-->
         <scene sceneID="8Fq-EH-OZP">
@@ -1846,8 +1853,8 @@
                                 <rect key="frame" x="9" y="51" width="12" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100/100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdZ-S2-hgu">
-                                <rect key="frame" x="114" y="51" width="35" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" misplaced="YES" text="100/100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdZ-S2-hgu">
+                                <rect key="frame" x="114" y="51" width="50" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SkranjiBold" family="SkranjiBold" pointSize="9"/>
                                 <color key="textColor" red="0.074509803920000006" green="0.68627450980000004" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2135,6 +2142,9 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnFollowOpponent:" destination="lVI-RY-6Nv" eventType="touchUpInside" id="XHX-GB-I8t"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_heart" translatesAutoresizingMaskIntoConstraints="NO" id="QPK-Ho-y6q">
                                         <rect key="frame" x="197" y="76" width="15" height="15"/>
@@ -2201,6 +2211,7 @@
                         <outlet property="TotalHealthBarFighter" destination="rx0-no-CRo" id="JED-Lo-rx8"/>
                         <outlet property="TotalHealthBarOpponent" destination="nOp-21-uNu" id="7ji-Fz-URq"/>
                         <outlet property="ViewChallenge" destination="4zS-Yv-j85" id="spy-L1-uQM"/>
+                        <outlet property="btnFollowPlayer" destination="xem-vo-JUr" id="AEo-wj-2V5"/>
                         <outlet property="imgFlagFighter" destination="qtb-qw-1xh" id="rbg-wJ-IrS"/>
                         <outlet property="imgFlagOpponent" destination="wP0-gb-4ex" id="oXA-yn-C6s"/>
                         <outlet property="imgOnlineStatusFighter" destination="u5E-5u-8cY" id="esh-5a-gb9"/>

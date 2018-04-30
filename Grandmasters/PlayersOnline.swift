@@ -22,6 +22,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     let dict = [["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"],["random","Hiren","IN","2"],["random","abcdefghijklomopqr","PK","15"],["random","abcdefghijklomopqr","CN","30"],["random","Hiren","IN","40"]]
     
     var tempDict = JSON()
+    var tempFollowDict = JSON()
     
     @IBOutlet weak var PlayersOnlineCollectionView: UICollectionView!
     @IBOutlet var ViewChallenge: UIView!
@@ -42,6 +43,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     @IBOutlet var lblRankOpponent: UILabel!
     @IBOutlet var imgOnlineStatusOpponent: UIImageView!
     @IBOutlet var lblNameOpponent: MarqueeLabel!
+    @IBOutlet var btnFollowPlayer: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,6 +156,44 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             }
             
         }
+        
+        
+        // Code for getting the follow list
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let followlistParams:Parameters = ["uid": "\(userDefault.value(forKey: UserId)!)"]
+        
+        Alamofire.request(getFollowListAPI, method: .get, parameters: followlistParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                
+                
+                print(JSON(response.result.value))
+                
+                self.tempFollowDict = JSON(response.result.value)
+                
+                if(self.tempFollowDict["message"].stringValue == "success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+        
     }
     
     @IBAction func btnFight(_ sender: UIButton) {
@@ -186,6 +226,8 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                 self.ProfileImgOpponent.image = image
             })
         }
+        
+        
         
         ViewChallenge.isHidden = false
         
@@ -298,6 +340,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
     
     @IBAction func btnFollowing(_ sender: UIButton) {
         
+        /*
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         let followlistParams:Parameters = ["uid": "\(userDefault.value(forKey: UserId)!)"]
@@ -358,6 +401,77 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                 self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
             }
         })
+        
+        */
+        
+        
+        var tempFollow = JSON()
+        
+        tempFollow = self.tempDict
+        
+        self.tempDict = []
+        
+        for i in 0...self.tempFollowDict["followlist"].count-1
+        {
+            for j in 0...tempFollow.count-1
+            {
+                if(self.tempFollowDict["followlist"][i]["Fol_Following"].intValue == tempFollow[j]["Mem_Id"].intValue)
+                {
+                    let x = tempFollow[j]
+                    print(x)
+                    
+                    self.tempDict.arrayObject?.append(x)
+                    
+                }
+            }
+            
+            
+        }
+        print(self.tempDict)
+        self.PlayersOnlineCollectionView.reloadData()
+        
+    }
+    
+    @IBAction func btnFollowOpponent(_ sender: UIButton) {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let followParams:Parameters = ["follower": "\(userDefault.value(forKey: UserId)!)" , "following" : selectedOpponent["Mem_Id"].stringValue]
+        
+        Alamofire.request(followOpponentAPI, method: .get, parameters: followParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                
+                
+                print(JSON(response.result.value))
+                
+                let temp = JSON(response.result.value)
+                
+                
+                
+                if(temp["message"].stringValue == "success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    self.showAlert(title: "Success", message: "You started Following Successfully")
+                    
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+        
     }
     
     @IBAction func btnStats(_ sender: UIButton) {
@@ -372,6 +486,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
          return Int(arc4random_uniform(UInt32(n)))
     }
     
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
