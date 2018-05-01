@@ -228,6 +228,9 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         }
         
         
+        // code to to mark if your player follow selected opponent or not
+        checkifFollowOpponent(opponentId : selectedOpponent["Mem_Id"].intValue)
+        
         
         ViewChallenge.isHidden = false
         
@@ -296,12 +299,15 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             })
             
             ViewChallenge.isHidden = false
+            
+            // code to to mark if your player follow selected opponent or not
+            checkifFollowOpponent(opponentId : selectedOpponent["Mem_Id"].intValue)
+
         }
         else
         {
             self.showAlert(title: "Alert", message: "Please Select an Opponent to get the Information")
         }
-        
         
     }
     
@@ -334,6 +340,9 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             })
             
             ViewChallenge.isHidden = false
+            
+            // code to to mark if your player follow selected opponent or not
+            checkifFollowOpponent(opponentId : selectedOpponent["Mem_Id"].intValue)
         }
         
     }
@@ -486,6 +495,35 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
          return Int(arc4random_uniform(UInt32(n)))
     }
     
+    func checkifFollowOpponent(opponentId : Int)
+    {
+        print(opponentId)
+        
+        var flag:Bool = false
+        
+        for i in 0...self.tempFollowDict["followlist"].count-1
+        {
+               if(opponentId == self.tempFollowDict["followlist"][i]["Fol_Following"].intValue)
+                {
+                    flag = true
+                    break;
+                    
+                }
+            
+        }
+        
+        if flag
+        {
+            btnFollowPlayer.titleLabel?.text = "Following"
+            btnFollowPlayer.backgroundColor = UIColor(red: 224/255, green: 146/255, blue: 0/255, alpha: 1)
+            
+        }
+        else
+        {
+            btnFollowPlayer.titleLabel?.text = "Follow"
+            btnFollowPlayer.backgroundColor = UIColor.black
+        }
+    }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
