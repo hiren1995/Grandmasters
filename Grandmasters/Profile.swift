@@ -9,6 +9,9 @@
 
 import UIKit
 import CountryPicker
+import SwiftyJSON
+import MBProgressHUD
+import Alamofire
 
 class Profile: UIViewController,CountryPickerDelegate {
     
@@ -29,13 +32,15 @@ class Profile: UIViewController,CountryPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imgFlag.isHidden = true
-        lblCountryName.isHidden = true
+        
+        
         picker.isHidden = true
         btnClosePicker.isHidden = true
         
         PickerConfiguration()
 
+        loadData()
+        
         // Do any additional setup after loading the view.
     }
     @IBAction func btnSelectCountry(_ sender: UIButton) {
@@ -148,6 +153,74 @@ class Profile: UIViewController,CountryPickerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
         self.present(fightStats, animated: true, completion: nil)
+    }
+    
+    func loadData()
+    {
+        print(UserData)
+        
+        txtFighterName.text = UserData["Mem_fightername"].stringValue
+        txtEmail.text = UserData["Mem_Email"].stringValue
+        
+        let x = userDefault.value(forKey: loginParam) as! NSDictionary
+        
+        print(x["pwd"])
+        
+        txtPassword.text = x["pwd"] as? String
+        
+        picker.setCountry(UserData["Mem_Country"].stringValue)
+        
+        lblCountryName.text = Country
+        imgFlag.image = UIImage(named: CountryCode)
+        
+        lblSelectCountry.isHidden = true
+        
+    }
+    
+    @IBAction func btnSave(_ sender: UIButton) {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        if(txtFighterName.text == "")
+        {
+            self.showAlert(title: "Alert", message: "Please Enter Fighter Name")
+        }
+        else
+        {
+            let updateParams:Parameters = ["userid": UserData["Mem_Id"].stringValue , "fightername" : txtFighterName.text! , "country" : CountryCode]
+            
+            Alamofire.request(updateProfileAPI, method: .get, parameters: updateParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+                if(response.result.value != nil)
+                {
+                    
+                    
+                    print(JSON(response.result.value))
+                    
+                    let temp = JSON(response.result.value)
+                    
+                    if(temp["message"].stringValue == "Success" && temp["response_code"].intValue == 200)
+                    {
+                        
+                        UserData = temp["response_message"]["userdata"][0]
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                    }
+                    else
+                    {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                    }
+                    
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print("Error in Getting Response")
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+            })
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

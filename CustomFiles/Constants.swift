@@ -30,4 +30,5 @@ var getGameStatsAPI = "\(Base_URL)/member/getStatistic"
 var getFollowListAPI = "\(Base_URL)/member/followlist"
 var updateProfilePicAPI = "\(Base_URL)/member/updateprofilepic"
 var followOpponentAPI = "\(Base_URL)/member/follow"
+var updateProfileAPI = "\(Base_URL)/member/updateprofile"
 

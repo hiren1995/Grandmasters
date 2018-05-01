@@ -514,13 +514,15 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
         
         if flag
         {
-            btnFollowPlayer.titleLabel?.text = "Following"
+            //btnFollowPlayer.titleLabel?.text = "Following"
+            btnFollowPlayer.setTitle("Following", for: .normal)
             btnFollowPlayer.backgroundColor = UIColor(red: 224/255, green: 146/255, blue: 0/255, alpha: 1)
             
         }
         else
         {
-            btnFollowPlayer.titleLabel?.text = "Follow"
+            //btnFollowPlayer.titleLabel?.text = "Follow"
+            btnFollowPlayer.setTitle("Follow", for: .normal)
             btnFollowPlayer.backgroundColor = UIColor.black
         }
     }

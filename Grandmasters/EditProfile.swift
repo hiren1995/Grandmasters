@@ -37,12 +37,18 @@ class EditProfile: UIViewController {
             lblFirst.text = "New Email Address"
             lblSecond.text = "Confirm Email Address"
             lblThird.text = "Password"
+            
+            txtThird.isSecureTextEntry = true
         }
         else
         {
             lblFirst.text = "Current Password"
             lblSecond.text = "New Password"
             lblThird.text = "Confirm Password"
+            
+            txtFirst.isSecureTextEntry = true
+            txtSecond.isSecureTextEntry = true
+            txtThird.isSecureTextEntry = true
         }
     }
     @IBAction func btnCancel(_ sender: UIButton) {
