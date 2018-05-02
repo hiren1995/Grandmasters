@@ -26,11 +26,23 @@ class TrainingRoom: UIViewController {
     @IBOutlet var lblMightBox: UILabel!
     @IBOutlet var lblAccuracyBox: UILabel!
     @IBOutlet var lblAgilityBox: UILabel!
+    @IBOutlet var lblSkillPoints: UILabel!
+    @IBOutlet var lblExtras: UILabel!
+    
+    var SkillPoints : Int = 0
+    var powerValue : Int = 0
+    var powerPoint : Int = 0
+    var healthValue : Int = 0
+    var healthPoint : Int = 0
+    var Might : Int = 0
+    var Accuracy : Int = 0
+    var Agility : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
+        loadData()
         
         // Do any additional setup after loading the view.
     }
@@ -46,6 +58,103 @@ class TrainingRoom: UIViewController {
         let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
         self.present(fightStats, animated: true, completion: nil)
     }
+    
+    func loadData()
+    {
+        print(UserData)
+        
+        imgPlayerFlag.image = UIImage(named: UserData["Mem_Country"].stringValue)
+        lblPlayerName.text = UserData["Mem_fightername"].stringValue
+        
+        PlayerHealthStatusBar.animateTo(progress: CGFloat(UserData["Mem_TotalHealthPoint"].floatValue))
+        lblHealthStatus.text  = "\(UserData["Mem_HealthPoint"].stringValue)/\(UserData["Mem_TotalHealthPoint"].stringValue)"
+        lblPlayerLevel.text = UserData["Mem_Level"].stringValue
+        
+        if(UserData["Mem_OnlineStatus"].intValue == 1)
+        {
+            imgPlayerOnlineStatus.image = UIImage(named: "ic_online")
+        }
+        else
+        {
+            imgPlayerOnlineStatus.image = UIImage(named: "ic_offline")
+        }
+        
+        SkillPoints = UserData["Mem_SkillPoint"].intValue
+        
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        
+        lblExtras.text = ": \(UserData["Mem_Extras"].stringValue)"
+        
+        powerValue = UserData["Mem_PowerValue"].intValue
+        powerPoint = UserData["Mem_PowerPoint"].intValue
+        
+        lblPower.text = "\(UserData["Mem_PowerValue"].stringValue) (\(UserData["Mem_PowerPoint"].stringValue))"
+        
+        healthValue = UserData["Mem_HealthValue"].intValue
+        healthPoint = UserData["Mem_HealthPoint"].intValue
+        
+        lblHealth.text = "\(UserData["Mem_HealthValue"].stringValue) (\(UserData["Mem_HealthPoint"].stringValue))"
+        
+        Might = UserData["Mem_MightValue"].intValue
+        lblMight.text = UserData["Mem_MightValue"].stringValue
+        Accuracy = UserData["Mem_AccuracyValue"].intValue
+        lblAccuracy.text = UserData["Mem_AccuracyValue"].stringValue
+        Agility = UserData["Mem_AgilityValue"].intValue
+        lblAgility.text = UserData["Mem_AgilityValue"].stringValue
+    }
+    
+    @IBAction func btnPowerAdd(_ sender: UIButton) {
+        
+        SkillPoints = SkillPoints - 1
+        powerValue = powerValue + 1
+        powerPoint = powerPoint + 2
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        
+        lblPower.text = "\(String(powerValue)) (\(String(powerPoint)))"
+        
+    }
+    
+    @IBAction func btnHealthAdd(_ sender: UIButton) {
+        
+        SkillPoints = SkillPoints - 1
+        healthValue = healthValue + 1
+        healthPoint = healthPoint + 10
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        
+        lblHealth.text = "\(String(healthValue)) (\(String(healthPoint)))"
+    }
+    
+    @IBAction func btnMightAdd(_ sender: UIButton) {
+        
+        SkillPoints = SkillPoints - 1
+        Might = Might + 1
+        
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        lblMight.text = "\(String(Might))"
+        
+    }
+    
+    @IBAction func btnAccuracyAdd(_ sender: UIButton) {
+       
+        SkillPoints = SkillPoints - 3
+        Accuracy = Accuracy + 1
+        
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        lblAccuracy.text = "\(String(Accuracy))"
+    }
+    
+    @IBAction func btnAgilityAdd(_ sender: UIButton) {
+        
+        SkillPoints = SkillPoints - 1
+        Agility = Agility + 1
+        
+        lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
+        lblAgility.text = "\(String(Agility))"
+    }
+    
+    @IBAction func btnExtras(_ sender: UIButton) {
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

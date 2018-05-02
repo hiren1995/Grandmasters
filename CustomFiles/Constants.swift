@@ -33,4 +33,5 @@ var followOpponentAPI = "\(Base_URL)/member/follow"
 var updateProfileAPI = "\(Base_URL)/member/updateprofile"
 var updateEmailAPI = "\(Base_URL)/member/updateEmail"
 var updatePasswordAPI = "\(Base_URL)member/updatePassword"
+var forgetPasswordAPI = "\(Base_URL)/member/memberdetails"
 

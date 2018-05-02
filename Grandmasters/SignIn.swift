@@ -147,7 +147,48 @@ class SignIn: UIViewController,UITextFieldDelegate {
             else
             {
                 
-                ViewForgetPassword.isHidden = true
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                
+                let forgetPasswdParams:Parameters = ["emailid": txtEmailFP.text!]
+                
+                Alamofire.request(forgetPasswordAPI, method: .get, parameters: forgetPasswdParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+                    if(response.result.value != nil)
+                    {
+                        
+                        
+                        print(JSON(response.result.value))
+                        
+                        let temp = JSON(response.result.value)
+                        
+                        if(temp["message"].stringValue == "Success" && temp["response_code"].intValue == 200)
+                        {
+                            
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            
+                            
+                            self.ViewForgetPassword.isHidden = true
+                            
+                        }
+                        else if(temp["response_code"].intValue == 404)
+                        {
+                            self.showAlert(title: "Alert", message: temp["response_message"].stringValue)
+                        }
+                        else
+                        {
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                        }
+                        
+                    }
+                    else
+                    {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print("Error in Getting Response")
+                        self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                    }
+                })
+                
+                
             }
         }
         
