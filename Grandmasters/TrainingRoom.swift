@@ -9,6 +9,9 @@
 import UIKit
 import SwiftyJSON
 import GTProgressBar
+import MBProgressHUD
+import Alamofire
+
 
 class TrainingRoom: UIViewController {
 
@@ -37,6 +40,10 @@ class TrainingRoom: UIViewController {
     var Might : Int = 0
     var Accuracy : Int = 0
     var Agility : Int = 0
+    var Extra : Int = 0
+    var MightCount : Int = 0
+    var AccuracyCount : Int = 0
+    var AgilityCount : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +56,49 @@ class TrainingRoom: UIViewController {
 
     @IBAction func btnHome(_ sender: UIButton) {
         
-        self.dismiss(animated: true, completion: nil)
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let updateTrainingParams:Parameters = ["UserId": userDefault.value(forKey: UserId)! ,"SkillPoint": SkillPoints,"PowerValue":powerValue,"PowerPoint":powerPoint,"HealthValue":healthValue,"HealthPoint":healthPoint,"TotalHealthPoint":healthPoint,"AccuracyCount":AccuracyCount,"AccuracyValue":Accuracy,"MightCount":MightCount,"MightValue":Might,"AgilityCount":AgilityCount,"AgilityValue":Agility,"Extras": Extra]
+        print(updateTrainingParams)
+        
+        Alamofire.request(memberTrainingRoomUpdateAPI, method: .get, parameters: updateTrainingParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            if(response.result.value != nil)
+            {
+                
+                
+                print(JSON(response.result.value))
+                
+                let temp = JSON(response.result.value)
+                
+                
+                
+                if(temp["message"].stringValue == "Success")
+                {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    UserData = temp["response_message"]["userdata"][0]
+                    
+                   self.dismiss(animated: true, completion: nil)
+                    
+                }
+                else
+                {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                }
+                
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("Error in Getting Response")
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        })
+        
+        //self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func btnStats(_ sender: UIButton) {
@@ -101,6 +150,13 @@ class TrainingRoom: UIViewController {
         lblAccuracy.text = UserData["Mem_AccuracyValue"].stringValue
         Agility = UserData["Mem_AgilityValue"].intValue
         lblAgility.text = UserData["Mem_AgilityValue"].stringValue
+        
+        MightCount = UserData["Mem_MightCount"].intValue
+        lblMightBox.text = UserData["Mem_MightCount"].stringValue
+        AccuracyCount = UserData["Mem_AccuracyCount"].intValue
+        lblAccuracyBox.text = UserData["Mem_AccuracyCount"].stringValue
+        AgilityCount = UserData["Mem_AgilityCount"].intValue
+        lblAgilityBox.text = UserData["Mem_AgilityCount"].stringValue
     }
     
     @IBAction func btnPowerAdd(_ sender: UIButton) {
@@ -132,6 +188,12 @@ class TrainingRoom: UIViewController {
         lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
         lblMight.text = "\(String(Might))"
         
+        if(Might % 3 == 0)
+        {
+            MightCount = MightCount + 1
+            lblMightBox.text = "\(MightCount)"
+        }
+        
     }
     
     @IBAction func btnAccuracyAdd(_ sender: UIButton) {
@@ -141,6 +203,12 @@ class TrainingRoom: UIViewController {
         
         lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
         lblAccuracy.text = "\(String(Accuracy))"
+        
+        if(Accuracy % 3 == 0)
+        {
+            AccuracyCount = AccuracyCount + 1
+            lblAccuracyBox.text = "\(AccuracyCount)"
+        }
     }
     
     @IBAction func btnAgilityAdd(_ sender: UIButton) {
@@ -150,6 +218,12 @@ class TrainingRoom: UIViewController {
         
         lblSkillPoints.text = "Skill Points : \(String(SkillPoints)) sp"
         lblAgility.text = "\(String(Agility))"
+        
+        if(Agility % 3 == 0)
+        {
+            AgilityCount = AgilityCount + 1
+            lblAgilityBox.text = "\(AgilityCount)"
+        }
     }
     
     @IBAction func btnExtras(_ sender: UIButton) {

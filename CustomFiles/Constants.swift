@@ -34,4 +34,5 @@ var updateProfileAPI = "\(Base_URL)/member/updateprofile"
 var updateEmailAPI = "\(Base_URL)/member/updateEmail"
 var updatePasswordAPI = "\(Base_URL)member/updatePassword"
 var forgetPasswordAPI = "\(Base_URL)/member/memberdetails"
+var memberTrainingRoomUpdateAPI = "\(Base_URL)/member/updateTrainingRoom"
 
