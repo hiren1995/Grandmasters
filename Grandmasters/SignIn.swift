@@ -243,6 +243,8 @@ class SignIn: UIViewController,UITextFieldDelegate {
        
         userDefault.set(LoginParams, forKey: loginParam)
         
+        print(LoginParams)
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         Alamofire.request(UserLoginAPI, method: .get, parameters: LoginParams, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
