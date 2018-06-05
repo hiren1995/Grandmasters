@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
             
+            Messaging.messaging().delegate = self
+            
         }
         
         application.registerForRemoteNotifications()
@@ -228,15 +230,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print(remoteMessage.appData)
     }
     
-    
+    /*
     // This method will be called when app received push notifications in foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
         
-        /*
+        
         let userInfo = notification.request.content.userInfo
         print(userInfo)
+        
         let aps = userInfo["gcm.notification.data"] as? String
         // print(aps)
         
@@ -261,12 +264,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         */
  
-        */
+ 
         
     }
+    */
+ 
+ 
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+    {
+        
+        
+        //        let notificationName = Notification.Name("PushtOLiveOrder")
+        //        NotificationCenter.default.post(name: notificationName, object: nil)
+        print(response.notification.request.content.userInfo)
+        
+        if(UIApplication.shared.applicationState == .active)
+        {
+        }
+        else
+        {
+        }
+        print(response.notification.request.content.userInfo)
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        print(notification.request.content.userInfo)
+    }
+    
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Received data message: \(remoteMessage.appData)")
+        //print("Received data message: \(remoteMessage.appData)")
+        
+        let NotificationData = JSON(remoteMessage.appData[AnyHashable("objectFight")])
+        print(NotificationData)
+        
+        print("\n =============================================== \(NotificationData["response"].stringValue) \n")
+        
+        print(NotificationData["response"].stringValue)
+        
+        let initialView = self.storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
+        self.window?.rootViewController = initialView
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FightChallenge"), object: NotificationData)
+        
+        
+        if (NotificationData["response"].stringValue == "Request Sent successfully" && NotificationData["message"].stringValue == "success"){
+            
+            //let initialView = self.storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
+            //self.window?.rootViewController = initialView
+            
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FightChallenge"), object: NotificationData)
+            
+        }
+        else{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Notification"), object: NotificationData)
+        }
+        
     }
     
     //--------------------------------------- Push Notification module End ---------------------------------------------------------------------------------------------------

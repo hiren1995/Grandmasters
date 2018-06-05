@@ -31,10 +31,21 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     @IBOutlet var imgProfilePic: UIImageView!
     @IBOutlet var lblWinDrawLose: UILabel!
     
+    
+    
+    
+    @IBOutlet var ChallengeView: UIView!
+    
+    
+    
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fightChallengeReceived(notification:)), name: NSNotification.Name("FightChallenge"), object: nil)
+        
+        ChallengeView.isHidden = true
 
         //loadData()
         
@@ -252,6 +263,31 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
             }
         })
         
+    }
+    
+    
+    @objc func fightChallengeReceived (notification : NSNotification)
+    {
+        print(notification)
+        print("Notification Received")
+        
+        ChallengeView.isHidden = false
+        
+        //print(notification.object)
+        
+        /*
+         let dataDic = notification.object as? NSDictionary
+         let fromId = dataDic?["chat_random_id"] as? String
+         print("Notification Chat Random id:\(fromId)")
+         print("Chat Random Id is:\(strChatRandomID)")
+         if fromId == strChatRandomID
+         {
+         getAllMessages()
+         }
+         
+         */
+        
+        //LoadMessages()
     }
     
     override func didReceiveMemoryWarning() {
