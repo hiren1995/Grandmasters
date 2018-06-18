@@ -35,10 +35,10 @@ var opponentBlockedThigh:Bool = false
 var opponentBlockedLeg:Bool = true
 
 
-
-
 var blockCounter:Int = 0
 var attackCounter:Int = 0
+
+var ArenaFlag = 0
 
 class Arena: UIViewController {
 
@@ -71,6 +71,8 @@ class Arena: UIViewController {
         
         
         btnHeadBlock.setBackgroundImage(UIImage(named: "ic_head"), for: .selected)
+        
+        loadData()
         
         // Do any additional setup after loading the view.
     }
@@ -120,6 +122,9 @@ class Arena: UIViewController {
     
     @IBAction func btnGoAction(_ sender: UIButton) {
        
+        
+        
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let result = storyboard.instantiateViewController(withIdentifier: "result") as! Result
@@ -353,6 +358,15 @@ class Arena: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let fightStats = storyboard.instantiateViewController(withIdentifier: "fightStats") as! FightStats
         self.present(fightStats, animated: true, completion: nil)
+    }
+    
+    func loadData()
+    {
+        if ArenaFlag == 1
+        {
+            
+        }
+       
     }
     
     override func didReceiveMemoryWarning() {

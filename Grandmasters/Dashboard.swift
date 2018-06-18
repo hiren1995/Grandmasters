@@ -35,6 +35,14 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     
     
     @IBOutlet var ChallengeView: UIView!
+    @IBOutlet var imgFlagChallengeView: UIImageView!
+    @IBOutlet var lblNameChallengeView: MarqueeLabel!
+    @IBOutlet var imgOnlineChallengeView: UIImageView!
+    @IBOutlet var lblLevelChallengeView: UILabel!
+    @IBOutlet var imgUserChallengeView: UIImageView!
+    @IBOutlet var lblWinningsChallengeView: UILabel!
+    @IBOutlet var HealthViewChallengeView: GTProgressBar!
+    @IBOutlet var lblHealthBarChallengeView: UILabel!
     
     
     
@@ -73,9 +81,17 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     
     @IBAction func btnArena(_ sender: UIButton) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let arena = storyboard.instantiateViewController(withIdentifier: "arena") as! Arena
-        self.present(arena, animated: true, completion: nil)
+        if ArenaFlag == 1
+        {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let arena = storyboard.instantiateViewController(withIdentifier: "arena") as! Arena
+            self.present(arena, animated: true, completion: nil)
+        }
+        else
+        {
+            self.showAlert(title: "Fight First", message: "Please create Fight first")
+        }
+        
         
     }
     @IBAction func btnLeaderBoard(_ sender: UIButton) {
@@ -273,6 +289,9 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
         
         ChallengeView.isHidden = false
         
+        
+        
+        
         //print(notification.object)
         
         /*
@@ -288,6 +307,59 @@ class Dashboard: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
          */
         
         //LoadMessages()
+    }
+    @IBAction func btnAcceptChallengeView(_ sender: UIButton) {
+        
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let urlString = createFightAPI + "user=" +  "\(userDefault.value(forKey: UserId)!)" + "&opponent=" + "167"
+        
+        //"\(selectedOpponent["Mem_Id"].intValue)"
+        
+        print(urlString)
+        
+        
+        
+        Alamofire.request(urlString).responseJSON { response in
+            
+            print(JSON(response.result.value))
+            
+            let temp = JSON(response.result.value)
+            
+            if(temp["message"] == "success")
+            {
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                ArenaFlag = 1
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let arena = storyboard.instantiateViewController(withIdentifier: "arena") as! Arena
+                self.present(arena, animated: true, completion: nil)
+               
+            }
+            else
+            {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+            }
+        }
+        
+        
+        
+        //ArenaFlag = 1
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let arena = storyboard.instantiateViewController(withIdentifier: "arena") as! Arena
+        //self.present(arena, animated: true, completion: nil)
+        
+    }
+    @IBAction func btnCancelChallengeView(_ sender: UIButton) {
+        
+        
+    }
+    @IBAction func btnFollowChallengeView(_ sender: UIButton) {
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

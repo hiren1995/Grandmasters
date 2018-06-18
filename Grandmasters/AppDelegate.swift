@@ -31,6 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //-------------------------------- Making app register for Remotw Notification --------------------------------------
+
+        
+        let deviceID = UIDevice.current.identifierForVendor!.uuidString
+        print(deviceID)
+        
+        userDefault.set(deviceID, forKey: DeviceId)
+        
         
         if #available(iOS 10.0, *) {
             
@@ -56,6 +63,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         }
         
+
+        /*
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+                
+                if error == nil
+                {
+                    UIApplication.shared.registerForRemoteNotifications()
+                    Messaging.messaging().delegate = self
+                    let token = Messaging.messaging().fcmToken
+                    print("FCM token: \(token ?? "")")
+                    
+                }
+            }
+            
+        }
+        else if #available(iOS 11.0, *)
+        {
+            let center  = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+                
+                Messaging.messaging().delegate = self
+                
+            }
+        }
+        else
+        {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+            //UIApplication.shared.registerForRemoteNotifications()
+            Messaging.messaging().delegate = self
+            
+        }
+        
+        UIApplication.shared.registerForRemoteNotifications()
+ 
+        */
+ 
         application.registerForRemoteNotifications()
         
         //-------------------------------------------------------------------------------------------------------------------
@@ -226,23 +273,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // The callback to handle data message received via FCM for devices running iOS 10 or above.
+    
     func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
     }
     
-    /*
+    
     // This method will be called when app received push notifications in foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
-        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+        //completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
         
         
         let userInfo = notification.request.content.userInfo
         print(userInfo)
         
-        let aps = userInfo["gcm.notification.data"] as? String
-        // print(aps)
+
         
+        let aps = userInfo["aps"]
+        print(aps)
+        
+        /*
         let data = aps?.data(using: .utf8)
         
         var jsonDictionary : NSDictionary = [:]
@@ -252,6 +303,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print(error)
         }
         print("Notification Data is:\(jsonDictionary)")
+        */
+        
         
         /*
         let strType = jsonDictionary["notification_from"] as? String
@@ -267,7 +320,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
  
         
     }
-    */
+    
  
  
     @available(iOS 10.0, *)
@@ -287,54 +340,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         print(response.notification.request.content.userInfo)
     }
-    
+
+    /*
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         print(notification.request.content.userInfo)
     }
-    
+    */
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        //print("Received data message: \(remoteMessage.appData)")
+        print("Received data message: \(remoteMessage.appData)")
+        
+        let r = JSON(remoteMessage.appData)
+        
+        print(r["objectFight"])
+        print(r["objectFight"]["response"])
+        print(r["objectFight"]["user2Data"])
+        print(r["objectFight"]["user2Data"][0])
+        print(r["objectFight"]["user2Data"][0]["Mem_Fname"])
+        
+        //let x = JSON(remoteMessage.appData[AnyHashable("objectFight")].unsafelyUnwrapped)
+        
+        //print(x["response"].string)
         
         let NotificationData = JSON(remoteMessage.appData[AnyHashable("objectFight")])
-        print(NotificationData)
+        //print(NotificationData)
         
-        print("\n =============================================== \(NotificationData["response"].stringValue) \n")
+        //print("\n =============================================== \(NotificationData["response"].stringValue) \n")
         
-        print(NotificationData["response"].stringValue)
+        //print(NotificationData["response"].stringValue)
+        
         
         let initialView = self.storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
         self.window?.rootViewController = initialView
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FightChallenge"), object: NotificationData)
         
-        
-        if (NotificationData["response"].stringValue == "Request Sent successfully" && NotificationData["message"].stringValue == "success"){
-            
-            //let initialView = self.storyboard.instantiateViewController(withIdentifier: "dashboard") as! Dashboard
-            //self.window?.rootViewController = initialView
-            
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FightChallenge"), object: NotificationData)
-            
-        }
-        else{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Notification"), object: NotificationData)
-        }
-        
     }
     
     //--------------------------------------- Push Notification module End ---------------------------------------------------------------------------------------------------
-    
-
-    
-    
-    
-    
-    
-    
-    
     
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -358,8 +403,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         

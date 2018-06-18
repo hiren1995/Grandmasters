@@ -200,7 +200,6 @@ class EditProfile: UIViewController {
                                 self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
                             }
                         })
-                    
                 }
             }
         }

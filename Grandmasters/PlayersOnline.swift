@@ -252,19 +252,18 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
             
             if(temp["message"] == "success")
             {
-               self.ViewChallenge.isHidden = true
+                self.ViewChallenge.isHidden = true
                 
                 self.showAlert(title: "Request Sent", message: "Request sent Successfully")
                 
             }
             else
             {
-                
                 self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
             }
         }
-        
     }
+    
     @IBAction func btnCancelChallenge(_ sender: UIButton) {
         
         ViewChallenge.isHidden = true
@@ -469,7 +468,7 @@ class PlayersOnline: UIViewController,UICollectionViewDelegate,UICollectionViewD
                 else
                 {
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
+                    //self.showAlert(title: "Alert", message: "Please Check Your Internet Connection")
                 }
                 
             }

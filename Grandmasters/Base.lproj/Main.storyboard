@@ -1075,7 +1075,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="btnFightRequest:" destination="lVI-RY-6Nv" eventType="touchUpInside" id="2pC-RV-xgl"/>
+                                            <action selector="btnAcceptChallengeView:" destination="7CH-So-tOv" eventType="touchUpInside" id="Qrc-Y1-eSi"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3E2-y5-DtJ">
@@ -1097,7 +1097,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="btnCancelChallenge:" destination="lVI-RY-6Nv" eventType="touchUpInside" id="YCz-J6-pS5"/>
+                                            <action selector="btnCancelChallengeView:" destination="7CH-So-tOv" eventType="touchUpInside" id="3p1-Yq-Lei"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="El4-yP-Nna">
@@ -1119,7 +1119,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="btnFollowOpponent:" destination="lVI-RY-6Nv" eventType="touchUpInside" id="zW1-OU-Ihc"/>
+                                            <action selector="btnFollowChallengeView:" destination="7CH-So-tOv" eventType="touchUpInside" id="bFM-Ih-V8j"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_heart" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-0b-Ljh">
@@ -1156,8 +1156,8 @@
                                         <color key="textColor" red="0.074509803920000006" green="0.68627450980000004" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You Challenged" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-MR-Fva">
-                                        <rect key="frame" x="232" y="50" width="104" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have been Challenged" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-MR-Fva">
+                                        <rect key="frame" x="155" y="50" width="250" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="SkranjiRegular" family="SkranjiRegular" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1183,24 +1183,32 @@
                     </view>
                     <connections>
                         <outlet property="ChallengeView" destination="FdU-Ca-buq" id="9qh-0M-09e"/>
+                        <outlet property="HealthViewChallengeView" destination="xPA-g4-Ogg" id="kmX-ai-oY5"/>
                         <outlet property="TotalHealthBar" destination="5qP-Wb-7s9" id="Ev2-Yz-vlY"/>
                         <outlet property="imgFlag" destination="ZdA-TE-9ky" id="04J-EO-X6x"/>
+                        <outlet property="imgFlagChallengeView" destination="a2V-Y7-Mz0" id="LuW-Z7-MC4"/>
+                        <outlet property="imgOnlineChallengeView" destination="kMt-HO-GWV" id="Sez-AY-dfl"/>
                         <outlet property="imgOnlineStatus" destination="Ufi-oh-2Fy" id="uga-Ef-N0U"/>
                         <outlet property="imgProfilePic" destination="10P-ts-77t" id="Zi2-D1-j8c"/>
+                        <outlet property="imgUserChallengeView" destination="ZMB-fe-xa5" id="URF-3r-awu"/>
                         <outlet property="lblAccuracy" destination="K55-bo-sza" id="8OA-cb-PwC"/>
                         <outlet property="lblAgility" destination="qkX-uD-hte" id="8jT-Jz-Lgg"/>
+                        <outlet property="lblHealthBarChallengeView" destination="RZt-12-BYg" id="9xw-ZK-RCO"/>
                         <outlet property="lblLevel" destination="23f-60-mx9" id="r9f-kr-jff"/>
+                        <outlet property="lblLevelChallengeView" destination="Re0-db-ZQL" id="AaZ-iF-2wU"/>
                         <outlet property="lblMight" destination="Rur-Gc-ofG" id="Vv3-4g-rX3"/>
                         <outlet property="lblName" destination="Ndg-Lq-cPu" id="q6P-bI-9z4"/>
+                        <outlet property="lblNameChallengeView" destination="OZI-No-tHM" id="U5q-QG-gfT"/>
                         <outlet property="lblPosition" destination="e2l-J2-Gpu" id="DBR-um-LTg"/>
                         <outlet property="lblTotalHealth" destination="RWZ-Fn-kPd" id="8rw-nS-k7z"/>
                         <outlet property="lblWinDrawLose" destination="F9T-uN-2zo" id="h9a-6P-xB3"/>
+                        <outlet property="lblWinningsChallengeView" destination="MKg-lE-NZh" id="8wq-mF-zBq"/>
                         <outlet property="lblXP" destination="ARY-4z-vBW" id="nb4-kQ-adW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xag-zS-HhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421" y="129"/>
+            <point key="canvasLocation" x="419.64017991004499" y="128.80000000000001"/>
         </scene>
         <!--Leader Board-->
         <scene sceneID="8Fq-EH-OZP">

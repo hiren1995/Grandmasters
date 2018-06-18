@@ -68,7 +68,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
             }
             else
             {
-                let params:Parameters = ["email" : txtEmail.text! ,"pwd" : txtPassword.text! , "GcmId" : userDefault.value(forKey: DeviceToken)!]
+                let params:Parameters = ["email" : txtEmail.text! ,"pwd" : txtPassword.text! , "GcmId" : userDefault.value(forKey: DeviceToken)!,"deviceid" : userDefault.value(forKey: DeviceId) as! String, "Mem_DeviceType" : 2]
 
                 
                 loginCall(LoginParams: params)
@@ -218,7 +218,7 @@ class SignIn: UIViewController,UITextFieldDelegate {
                                 let FBinfo = JSON(result)
                                 print(FBinfo)
                                 
-                                let params:Parameters = ["email" : FBinfo["email"].stringValue , "deviceid" : "123456" , "GcmId" : userDefault.value(forKey: DeviceToken)! , "fbid" : FBinfo["id"].intValue , "name" : FBinfo["name"].stringValue , "fname" : FBinfo["first_name"].stringValue , "lname" : FBinfo["last_name"].stringValue , "propic" : FBinfo["picture"]["data"]["url"].stringValue]
+                                let params:Parameters = ["email" : FBinfo["email"].stringValue , "deviceid" : userDefault.value(forKey: DeviceId) as! String , "GcmId" : userDefault.value(forKey: DeviceToken)! , "fbid" : FBinfo["id"].intValue , "name" : FBinfo["name"].stringValue , "fname" : FBinfo["first_name"].stringValue , "lname" : FBinfo["last_name"].stringValue , "propic" : FBinfo["picture"]["data"]["url"].stringValue , "Mem_DeviceType" : 2]
                                 
                                 self.loginCall(LoginParams: params)
                                

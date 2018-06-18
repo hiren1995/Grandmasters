@@ -12,6 +12,7 @@ var userDefault = UserDefaults.standard
 
 var UserId = "UserId"
 var DeviceToken = "DeviceToken"
+var DeviceId = "DeviceId"
 var isLogin = "isLogin"
 var loginParam = "LoginParam"
 
@@ -35,4 +36,5 @@ var updateEmailAPI = "\(Base_URL)/member/updateEmail"
 var updatePasswordAPI = "\(Base_URL)member/updatePassword"
 var forgetPasswordAPI = "\(Base_URL)/member/memberdetails"
 var memberTrainingRoomUpdateAPI = "\(Base_URL)/member/updateTrainingRoom"
+var createFightAPI = "\(Base_URL)/member/createFight?"
 
